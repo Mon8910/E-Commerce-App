@@ -1,3 +1,4 @@
+import 'package:demo_project/screens/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
@@ -128,6 +129,8 @@ class AuthCode extends StatelessWidget {
               ),
               ElevatedButton(
                     onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
+                      ResetPassword()));
                      
                     },
                    

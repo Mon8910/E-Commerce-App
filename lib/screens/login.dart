@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
         )),
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
         body: SingleChildScrollView(
-          child: 
+          child:
             Column(
               children: [
                 const SizedBox(
