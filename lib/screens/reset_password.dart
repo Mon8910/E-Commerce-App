@@ -1,6 +1,8 @@
+import 'package:demo_project/providers/visiable_password.dart';
 import 'package:demo_project/widgets/reset_passwordwidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -20,7 +22,7 @@ class _ResetPasswordState extends State<ResetPassword> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: const Icon(Icons.arrow_back)),
+            icon: const Icon(Icons.arrow_back_ios_rounded)),
       ),
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
       body: SingleChildScrollView(
@@ -71,7 +73,10 @@ class _ResetPasswordState extends State<ResetPassword> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: TextFormField(
+                    child: Selector<PasswordVisibilityProvider,bool>(
+                      selector: (context, provider) => provider.isPasswordVisible,
+                      builder: (context,isPasswordVisible , child) {
+                        return TextFormField(
                       decoration:  InputDecoration(
                           hintText: 'Enter at least 8 characters',hintStyle: GoogleFonts.jost(
                             fontSize: 14,
@@ -80,11 +85,24 @@ class _ResetPasswordState extends State<ResetPassword> {
                           )
                           ,
                        
-                          suffixIcon:const Icon(Icons.visibility)),
+                          suffixIcon:IconButton(
+                        onPressed: () {
+                           final passwordProvider =
+                            Provider.of<PasswordVisibilityProvider>(
+                                context,
+                                listen: false);
+                        passwordProvider.togglePasswordVisibility();
+
+                        },
+                        icon: Icon( isPasswordVisible
+                            ? Icons.visibility_off
+                            : Icons.visibility))),
                       autocorrect: false,
                       enableSuggestions: false,
-                      obscureText: true,
-                    ),
+                      obscureText: !isPasswordVisible,
+                    );
+                      },
+                    )
                   ),
         
                 ],
@@ -122,7 +140,10 @@ class _ResetPasswordState extends State<ResetPassword> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: TextFormField(
+                    child: Selector<PasswordVisibilityProvider,bool>(
+                      selector: (context, provider) => provider.isPasswordVisible,
+                      builder: (context,isPasswordVisible , child) {
+                        return TextFormField(
                       decoration:  InputDecoration(
                           hintText: 'Enter at least 8 characters',hintStyle: GoogleFonts.jost(
                             fontSize: 14,
@@ -131,11 +152,24 @@ class _ResetPasswordState extends State<ResetPassword> {
                           )
                           ,
                        
-                          suffixIcon:const Icon(Icons.visibility)),
+                          suffixIcon:IconButton(
+                        onPressed: () {
+                           final passwordProvider =
+                            Provider.of<PasswordVisibilityProvider>(
+                                context,
+                                listen: false);
+                        passwordProvider.togglePasswordVisibility();
+
+                        }, 
+                        icon: Icon( isPasswordVisible
+                            ? Icons.visibility_off
+                            : Icons.visibility))),
                       autocorrect: false,
                       enableSuggestions: false,
-                      obscureText: true,
-                    ),
+                      obscureText: !isPasswordVisible,
+                    );
+                      },
+                    )
                   ),
         
                 ],

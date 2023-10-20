@@ -42,6 +42,12 @@ dependencies:
   device_preview: ^1.1.0
   flutter_otp_text_field: ^1.1.1
   pinput: ^3.0.1
+  provider: ^6.0.5
+  http: ^1.1.0
+  string_2_icon: ^0.0.2
+  custom_navigation_bar: ^0.8.2
+  flutter_rating_bar: ^4.0.1
+  native_scaffold: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +76,15 @@ flutter:
   - assets/images/cadeau.png
   - assets/images/Group.png
   - assets/images/Message.png
+  - assets/images/noty.png
+  - assets/images/discount-shape.png
+  - assets/images/Home.png
+  - assets/images/Group.png
+  - assets/images/TopDeal.png
+  - assets/images/Gift.png
+  - assets/images/cart.png
+  - assets/images/Group 33.png
+
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

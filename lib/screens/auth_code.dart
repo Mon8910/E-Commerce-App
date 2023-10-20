@@ -1,19 +1,34 @@
-import 'package:demo_project/screens/reset_password.dart';
+import 'package:demo_project/providers/auth_code.dart';
+import 'package:demo_project/widgets/authcodewidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
+import 'package:provider/provider.dart';
 
-class AuthCode extends StatelessWidget {
+class AuthCode extends StatefulWidget {
   const AuthCode({super.key});
+
+  @override
+  State<AuthCode> createState() => _AuthCodeState();
+}
+
+class _AuthCodeState extends State<AuthCode> {
+  final codess=TextEditingController();
+  @override
+  void dispose() {
+    codess.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: (AppBar(
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: const Icon(Icons.arrow_back_sharp)),
+            icon: const Icon(Icons.arrow_back_ios_rounded)),
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
         elevation: 0.0,
       )),
@@ -23,58 +38,8 @@ class AuthCode extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 15,
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                  top: 38,
-                  bottom: 20,
-                  left: 20,
-                  right: 20,
-                ),
-                width: 148,
-                height: 131.91,
-                child: Image.asset(
-                  'assets/images/Message.png',
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                'Code',
-                style: GoogleFonts.jost(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1)),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              Text(
-                  'We have sent the code to create \n Your account to mobile number',
-                  style: GoogleFonts.jost(
-                      color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18),
-                  textAlign: TextAlign.center),
-              const SizedBox(
-                height: 14,
-              ),
-              Text(
-                '01022492218',
-                // de l7d ma at3aml m3 el api3shan httb3t mn 5laloh.
-                style: GoogleFonts.jost(
-                    color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1),
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 18,
-              ),
+              AuthcodeWidgets(),
+             
               Form(
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -84,6 +49,7 @@ class AuthCode extends StatelessWidget {
                     onCompleted: (value) {
                       
                     },
+                    controller: codess,
                     defaultPinTheme: PinTheme(
                         width: 43,
                         height: 43,
@@ -127,10 +93,14 @@ class AuthCode extends StatelessWidget {
                 height: MediaQuery.of(context).size.height *.17,
                 
               ),
-              ElevatedButton(
+              Consumer<AuthCodes>(builder: (context,authcode,child){
+                return  ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
-                      ResetPassword()));
+                      if(codess.text.isEmpty){}
+                      else{
+                        authcode.authcodess(code: codess.text, context: context);
+                      }
+                    
                      
                     },
                    
@@ -148,7 +118,8 @@ class AuthCode extends StatelessWidget {
                       )
       
                     ),
-                  )
+                  );
+              })
               
             ],
           ),

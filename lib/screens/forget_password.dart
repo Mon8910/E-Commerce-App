@@ -1,7 +1,10 @@
-import 'package:demo_project/screens/auth_code.dart';
+import 'package:demo_project/providers/auth_forgetpassword.dart';
+//import 'package:demo_project/screens/auth_code.dart';
+import 'package:demo_project/widgets/forgetpasswordwidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:fl_country_code_picker/fl_country_code_picker.dart';
+import 'package:country_code_picker/country_code_picker.dart';
+import 'package:provider/provider.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
@@ -12,7 +15,15 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
-  final countrypicker=const FlCountryCodePicker();
+  String? codes;
+  final phone=TextEditingController();
+  @override
+  void dispose() {
+    phone.dispose();
+    super.dispose();
+  }
+
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,49 +32,18 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: const Icon(Icons.arrow_back_sharp)),
+            icon: const Icon(Icons.arrow_back_ios_rounded)),
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
         elevation: 0.0,
       )),
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
-      body: SafeArea(
+      body: SingleChildScrollView(
           child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              margin: const EdgeInsets.only(
-                top: 14,
-                bottom: 20,
-                left: 20,
-                right: 20,
-              ),
-              width: 66,
-              height: 76,
-              child: Image.asset('assets/images/Group.png'),
-            ),
-            Text(
-              'Forget Password',
-              style: GoogleFonts.jost(
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                 color:const Color.fromARGB(1, 26, 26, 26).withOpacity(1)
-              ),
-              textAlign: TextAlign.center,
-            ),
-            Text('Enter phone number to receive \n code on it',
-                style:
-                    GoogleFonts.jost(fontSize: 12, 
-                    fontWeight: FontWeight.w400,
-                    color:const Color.fromARGB(1, 146, 159, 177).withOpacity(1)
-                    ),
-                textAlign: TextAlign.center),
-                const SizedBox(
-                  height: 80,
-                ),
+          const  ForgetpasswordWidget(),
+           
                 Align(
                   
                   alignment: Alignment.centerLeft,
@@ -87,56 +67,59 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: TextFormField(
-                          maxLines: 1,
-                          keyboardType: TextInputType.phone,
-                          textInputAction: TextInputAction.done,
-                          decoration: InputDecoration(
-                              border: const UnderlineInputBorder(),
-                              prefixIcon: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 8),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () async {
-                                       await countrypicker
-                                            .showPicker(context: context);
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16, vertical: 6),
-                                        child: const Text(
-                                          "20",
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 110, 107, 107)),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ))),
-                    )
+                    Row(
+                    children: [
+                      CountryCodePicker(
+                        boxDecoration:const BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide()
+                          ),
+                          
+                        ),
+                        onChanged: (value) {
+                          codes=value.dialCode;
+                          
+                        },
+                      ),
+                     const SizedBox(
+                        width: 4,
+                      ),
+                      Expanded(
+                        child: TextFormField(
+                          decoration:const InputDecoration(
+                            labelText: 'phone',
+                      
+                          ),
+                          controller: phone,
+                      
+                      
+                        ),
+                      )
+                    ],
+                  )
                   ],
                 )),
             
                 SizedBox(height: MediaQuery.of(context).size.height *.05,),
-               ElevatedButton(
+              Consumer<AuthForgetpassword>(builder: (context,authforget,child){
+                return ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
-                   AuthCode() ));
+                      if(phone.text.isEmpty){
+
+        }else{
+
+          authforget.forgetpassword(phone: phone.text, code: codes!,context: context);
+         // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AuthCode()));
+
+         //de hna 3shan bs a7dd hnsht8l ezay w t3ml navigator  ll b3dha.
+        }
+                   
                   },
                  
                   style: ElevatedButton.styleFrom(
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * .9, 64),
-                      backgroundColor:const Color(0x3FABAE).withOpacity(1),
+                      backgroundColor:phone.text.isEmpty?  Color.fromARGB(1, 26, 26, 26):   Color(0x3FABAE).withOpacity(1),
                       shape:const LinearBorder()),
                        child: Text(
                     'Next',
@@ -147,7 +130,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     )
 
                   ),
-                ),
+                )
+                ;
+              })
           ],
         ),
       )),
