@@ -1,6 +1,7 @@
 import 'package:demo_project/providers/auth_code.dart';
 import 'package:demo_project/providers/auth_forgetpassword.dart';
 import 'package:demo_project/providers/auth_provider.dart';
+import 'package:demo_project/providers/logout_provider.dart';
 import 'package:demo_project/providers/navigator_bar_providers.dart';
 import 'package:demo_project/providers/product_occaisons.dart';
 import 'package:demo_project/providers/product_occaisons_details.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
     ChangeNotifierProvider(create: (_) => ProductOccaisons()),
     ChangeNotifierProvider(create: (_) => ProductDetailsProvider()),
     ChangeNotifierProvider(create: (_) => PasswordVisibilityProvider()),
-    ChangeNotifierProvider(create: (_) => BottomNavBarProvider())
+    ChangeNotifierProvider(create: (_) => BottomNavBarProvider()),
+    ChangeNotifierProvider(create: (_) => AuthLogout())
    
    ],
    child: MaterialApp(builder: DevicePreview.appBuilder

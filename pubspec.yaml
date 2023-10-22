@@ -48,6 +48,7 @@ dependencies:
   custom_navigation_bar: ^0.8.2
   flutter_rating_bar: ^4.0.1
   native_scaffold: ^1.0.2
+  persistent_bottom_nav_bar: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -82,7 +83,7 @@ flutter:
   - assets/images/Group.png
   - assets/images/TopDeal.png
   - assets/images/Gift.png
-  - assets/images/cart.png
+  - assets/images/Account.png
   - assets/images/Group 33.png
 
   

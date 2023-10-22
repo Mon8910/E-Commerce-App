@@ -38,7 +38,7 @@ class _AuthCodeState extends State<AuthCode> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              AuthcodeWidgets(),
+             const AuthcodeWidgets(),
              
               Form(
                   child: Row(

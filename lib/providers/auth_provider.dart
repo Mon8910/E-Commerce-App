@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:demo_project/constants/variables.dart';
 import 'package:demo_project/screens/navigator_bar.dart';
-import 'package:demo_project/screens/ocaiaonss.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -51,7 +50,7 @@ class Authentication extends ChangeNotifier {
         // ignore: use_build_context_synchronously
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => BottomNavigationScreen()),
+          MaterialPageRoute(builder: (context) => ButtonFixedNavigator()),
         );
       } else {
         final req = json.decode(res.body);
