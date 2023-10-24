@@ -7,6 +7,7 @@ import 'package:demo_project/providers/navigator_bar_providers.dart';
 import 'package:demo_project/providers/product_occaisons.dart';
 import 'package:demo_project/providers/product_occaisons_details.dart';
 import 'package:demo_project/providers/visiable_password.dart';
+import 'package:demo_project/screen_plus_pdf/post1_screen.dart';
 import 'package:demo_project/screens/login.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
         width: MediaQuery.sizeOf(context).width*.43,
         height: MediaQuery.sizeOf(context).height*.72,
         child: Image.asset('assets/images/Cadeau logo.png'),
-      ), nextScreen:const Login())
+      ), nextScreen:Splash1Screen())
     ),);
   }
 }
