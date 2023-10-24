@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:demo_project/providers/auth_code.dart';
 import 'package:demo_project/providers/auth_forgetpassword.dart';
 import 'package:demo_project/providers/auth_provider.dart';
@@ -48,7 +49,15 @@ class MyApp extends StatelessWidget {
       ),
       
      
-      home :Login()
+      home :AnimatedSplashScreen(
+        splashIconSize: 200,
+        splashTransition: SplashTransition.fadeTransition,
+        backgroundColor: Theme.of(context).colorScheme.onPrimary
+        ,splash: SizedBox(
+        width: MediaQuery.sizeOf(context).width*.43,
+        height: MediaQuery.sizeOf(context).height*.72,
+        child: Image.asset('assets/images/Cadeau logo.png'),
+      ), nextScreen:const Login())
     ),);
   }
 }

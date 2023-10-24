@@ -54,6 +54,7 @@ class ButtonFixedNavigator extends StatelessWidget {
               context,
               screens: screens,
               items: navigatorbaritem(),
+              decoration: NavBarDecoration(),
             ),
           );
         });

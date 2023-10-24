@@ -10,7 +10,7 @@ class AuthLogout extends ChangeNotifier {
   Future<void> logout() async {
     
     final url=Uri.parse(Appurl.logOut);
-    final response = await http.post(url);
+    final response = await http.delete(url, );
 
     if (response.statusCode == 200) {
       _isLoggedIn = true;

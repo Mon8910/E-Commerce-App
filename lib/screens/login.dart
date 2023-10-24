@@ -1,5 +1,6 @@
 import 'package:demo_project/providers/auth_provider.dart';
 import 'package:demo_project/providers/visiable_password.dart';
+import 'package:demo_project/screen_plus_pdf/sign_up.dart';
 import 'package:demo_project/screens/forget_password.dart';
 import 'package:demo_project/widgets/loginwidgets.dart';
 import 'package:flutter/material.dart';
@@ -207,10 +208,15 @@ class _LoginState extends State<Login> {
                 const SizedBox(
                   width: 4,
                 ),
-                Text(
-                  'Sign up',
-                  style: GoogleFonts.jost(
-                      color: Color.fromARGB(1, 242, 85, 0).withOpacity(1)),
+                InkWell(onTap: (){
+                 showModalBottomSheet(isScrollControlled: true,context: context, builder: ((context) =>const SignupScreen()));
+                
+                },
+                  child: Text(
+                    'Sign up',
+                    style: GoogleFonts.jost(
+                        color:const Color.fromARGB(1, 242, 85, 0).withOpacity(1)),
+                  ),
                 )
               ],
             ),
