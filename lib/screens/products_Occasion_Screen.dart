@@ -1,6 +1,8 @@
 import 'package:demo_project/models/ocaisons_products.dart';
-import 'package:demo_project/providers/product_occaisons.dart';
-import 'package:demo_project/screens/occaisons_list_details.dart';
+import 'package:demo_project/models/occaisons_list_model.dart';
+import 'package:demo_project/providers/get_Occaisons_provider.dart';
+import 'package:demo_project/providers/prooduct_list.dart';
+import 'package:demo_project/screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +25,10 @@ class _OccaionsListScreenState extends State<OccaionsListScreen> {
       Provider.of<ProductOccaisons>(context, listen: false)
       .getallData(widget.occasionTypeId!);
     });
+     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<GetOccaisonsprovider>(context, listen: false).dataall(widget.occasionTypeId!);
+      
+    });
   }
 
   //final occasionLists = Apiprovderdetails();
@@ -31,14 +37,9 @@ class _OccaionsListScreenState extends State<OccaionsListScreen> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(
-            'Birthday',
-            style: GoogleFonts.jost(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1)),
-            textAlign: TextAlign.center,
-          ),
+          title:Selector<GetOccaisonsprovider,datamodel>(selector: (p0, p1) => p1.occc,builder: (context,value,child){
+            return Text(value.name.toString());
+          },) ,
           actions: const [Icon(Icons.search)],
           leading: IconButton(
               onPressed: () {
@@ -70,16 +71,14 @@ class _OccaionsListScreenState extends State<OccaionsListScreen> {
                   leading: Image.asset(
                     'assets/images/discount-shape.png',
                   ),
-                  title: Text(
-                    'Top offers for Birthday ',
-                    style: GoogleFonts.jost(
-                        fontSize: 14, fontWeight: FontWeight.w700),
-                  ),
-                  subtitle: Text(
-                    'Discover top offers for birthday’s gift and save money ',
-                    style: GoogleFonts.jost(
-                        fontWeight: FontWeight.w400, fontSize: 10),
-                  ),
+                  title: Selector<GetOccaisonsprovider,datamodel>(selector: (p0, p1) => p1.occc,builder: (context,value,child){
+            return Text('Top offers for ${value.name.toString()}',style: GoogleFonts.jost(
+                        fontSize: 14, fontWeight: FontWeight.w700),);
+          },) ,
+                  subtitle:Selector<GetOccaisonsprovider,datamodel>(selector: (p0, p1) => p1.occc,builder: (context,value,child){
+            return Text('Discover top offers for ${value.name.toString()}’s gift and save money ' ,style: GoogleFonts.jost(
+                        fontWeight: FontWeight.w400, fontSize: 10),);
+          },),
                   trailing:const Icon(Icons.keyboard_arrow_right,),
                 ),
               ),
@@ -89,7 +88,7 @@ class _OccaionsListScreenState extends State<OccaionsListScreen> {
                 return GridView.builder(
                     gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: .67,
+                        childAspectRatio: .70,
                         crossAxisSpacing: 3,
                         mainAxisSpacing: 1
                         )
@@ -121,16 +120,16 @@ class _OccaionsListScreenState extends State<OccaionsListScreen> {
                             color:const Color.fromARGB(1, 26, 26, 26).withOpacity(1)
 
                           ),),
-                         const SizedBox(height: 3,),
+                        const Spacer(),
                           Row(
                             children: [
-                            Text('\SAR ${value[index].price.toString()}',style: GoogleFonts.jost(
+                            Text(' ${value[index].currency!.name.toString()} ${value[index].price.toString()}',style: GoogleFonts.jost(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                               color:const Color.fromARGB(1, 26, 26, 26).withOpacity(1)
                             ),),
                            const SizedBox(width: 4,),
-                             Text('\SAR ${value[index].priceAfterDiscount.toString()}',
+                             Text('${value[index].currency!.name.toString()} ${value[index].priceAfterDiscount.toString()}',
                           style: GoogleFonts.jost(
                             decoration:  TextDecoration.lineThrough,
                             fontSize:12 ,

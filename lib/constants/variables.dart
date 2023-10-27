@@ -7,6 +7,7 @@ class Appurl{
   static const String occaisonsProducts='$baseurl/products?';
   static const String resetnewpassword='$baseurl/auth/passwords/customer/reset_password';
   static const String logOut='$baseurl/auth/logout';
+  
 
 }
 

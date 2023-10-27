@@ -19,7 +19,7 @@ class ForgetpasswordWidget extends StatelessWidget{
               ),
               width: 66,
               height: 76,
-              child: Image.asset('assets/images/Group.png'),
+              child: Image.asset('assets/images/group.png'),
             ),
             Text(
               'Forget Password',

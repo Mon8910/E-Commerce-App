@@ -20,7 +20,7 @@ class AuthcodeWidgets extends StatelessWidget{
                 width: 148,
                 height: 131.91,
                 child: Image.asset(
-                  'assets/images/Message.png',
+                  'assets/images/message.png',
                 ),
               ),
               const SizedBox(

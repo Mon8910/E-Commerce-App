@@ -1,8 +1,10 @@
 import 'package:demo_project/displaydata/occaisons.dart';
-import 'package:demo_project/models/ocaisons_list.dart';
-import 'package:demo_project/screens/occaisons_list_screen.dart';
+import 'package:demo_project/models/occaisons_list_model.dart';
+import 'package:demo_project/providers/occaisons_provider.dart';
+import 'package:demo_project/screens/products_occasion_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class Ocaions extends StatefulWidget {
   const Ocaions({super.key});
@@ -14,6 +16,17 @@ class Ocaions extends StatefulWidget {
 
 class _OcaionsState extends State<Ocaions> {
   final ocaisinprovider = Apiprovider();
+  
+  void initState() { 
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<Occaisonsprovider>(context, listen: false).occds();
+      
+    });
+
+  }
+  
+  
 
   @override
   Widget build(BuildContext context) {
@@ -36,59 +49,35 @@ class _OcaionsState extends State<Ocaions> {
           ),
         ),
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
-        body: Column(
-          children: [
-            Expanded(
-                child: FutureBuilder<OccasionType>(
-                    future: ocaisinprovider.getData(),
-                    builder: (context, snapshot) {
-                      int len = 0;
-                      if (snapshot.data != null) {
-                        len = snapshot.data!.data!.occasionTypes!.length;
-                        print("Len=======:  $len");
-                      } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-
-                      return snapshot.data?.data?.occasionTypes != null
-                          ? ListView.builder(
-                              itemCount:
-                                  snapshot.data!.data!.occasionTypes!.length,
-                              itemBuilder: (context, index) {
-                                return Padding(
+        body:  Selector<Occaisonsprovider,List<datamodel>>(builder: (context,value,child){
+    return ListView.builder(itemCount: value.length,itemBuilder: (context,index){
+       return Padding(
                                   padding: const EdgeInsets.all(12),
                                   child: Container(
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              .37,
+                                              .21,
                                       width: MediaQuery.of(context).size.width *
                                           12,
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
+                                      decoration:  BoxDecoration(
+                                       
+                                        borderRadius: BorderRadius.circular(15)
                                       ),
                                       child: Stack(
                                         children: [
-                                          Container(
-                                            decoration: const BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(29))),
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(12),
                                             child: Image.network(
-                                              snapshot.data!.data!
-                                                  .occasionTypes![index].banner
+                                            value[index].banner
                                                   .toString(),
                                               fit: BoxFit.cover,
                                               width: double.infinity,
                                               height: double.infinity,
+                                              
                                             ),
                                           ),
                                           Positioned(
-                                              top: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  .166,
+                                              top:50,
                                               right: 0,
                                               bottom: 0,
                                               left: 0,
@@ -110,11 +99,8 @@ class _OcaionsState extends State<Ocaions> {
                                                             height: 21,
                                                             child:
                                                                 Image.network(
-                                                              snapshot
-                                                                  .data!
-                                                                  .data!
-                                                                  .occasionTypes![
-                                                                      index]
+                                                           
+                                                                      value[index]
                                                                   .icon
                                                                   .toString(),
                                                               //color: Colors.white,
@@ -124,11 +110,8 @@ class _OcaionsState extends State<Ocaions> {
                                                             width: 5,
                                                           ),
                                                           Text(
-                                                            snapshot
-                                                                .data!
-                                                                .data!
-                                                                .occasionTypes![
-                                                                    index]
+                                                          
+                                                                    value[index]
                                                                 .name
                                                                 .toString(),
                                                             style: GoogleFonts.jost(
@@ -161,7 +144,7 @@ class _OcaionsState extends State<Ocaions> {
                                                             alignment: Alignment
                                                                 .centerLeft,
                                                             child: Text(
-                                                              'Nam facilisis risus leo,\n vitae tempus nisl.',
+                                                              value[index].description.toString(),
                                                               style: GoogleFonts
                                                                   .jost(
                                                                 fontSize: 14,
@@ -185,7 +168,7 @@ class _OcaionsState extends State<Ocaions> {
                                                                 // send id to details screen
                                                                 Navigator.of(context).push(MaterialPageRoute(builder: (context){
                                                                return  //ProductsDatas(idd: snapshot.data!.data!.occasionTypes![index].id as int);
-                                                                OccaionsListScreen(occasionTypeId: snapshot.data!.data!.occasionTypes![index].id as int, );
+                                                                OccaionsListScreen(occasionTypeId: value[index].id as int, );
                                                                 }));
                                                               },
                                                               style: ElevatedButton.styleFrom(
@@ -231,13 +214,8 @@ class _OcaionsState extends State<Ocaions> {
                                       ),
                                       ),
                                 );
-                              })
-                          : const SizedBox.shrink();
-                    },
-                    ),
-                    )
-          ],
-        ),
+    }) ;
+   }, selector: (context,p1)=>p1.oc),
         );
   }
 }

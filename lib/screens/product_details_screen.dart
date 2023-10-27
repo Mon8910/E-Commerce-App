@@ -1,6 +1,6 @@
 
 import 'package:demo_project/models/ocaisons_products.dart';
-import 'package:demo_project/providers/product_occaisons_details.dart';
+import 'package:demo_project/providers/product_list_details.dart';
 import 'package:demo_project/widgets/decoration.details.dart';
 import 'package:demo_project/widgets/list_button.dart';
 import 'package:flutter/material.dart';
@@ -123,13 +123,14 @@ class _OccaisonsListDetailsState extends State<OccaisonsListDetails> {
                       const SizedBox(height: 10,),
                        Row(
                         children: [
-                          Text('\SAR ${value.price}',style: GoogleFonts.jost(
+                          Text('${value.currency!.name.toString()} ${value.price}',style: GoogleFonts.jost(
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
                             color:const Color.fromARGB(1, 26, 26, 26).withOpacity(1)
                           ),),
+                          
                        const   SizedBox(width: 8,),
-                       Text('\SAR ${value.priceAfterDiscount}',style: GoogleFonts.jost(
+                       Text('${value.currency!.name.toString()} ${value.priceAfterDiscount}',style: GoogleFonts.jost(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                         color:const Color.fromARGB(1, 197, 197, 197).withOpacity(1),

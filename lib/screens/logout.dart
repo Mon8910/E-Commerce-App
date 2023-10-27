@@ -15,6 +15,7 @@ class Logout extends StatelessWidget{
               children: [
                 if (provider)
                   Text('You are logged in.'),
+                  Spacer(),
                 ElevatedButton(
                   onPressed: () {
                     final authState =
