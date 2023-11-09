@@ -1,7 +1,9 @@
-import 'package:demo_project/providers/auth_provider.dart';
+import 'package:demo_project/providers/login_provider.dart';
 import 'package:demo_project/providers/visiable_password.dart';
+import 'package:demo_project/repo/login_repo.dart';
 import 'package:demo_project/screen_plus_pdf/sign_up.dart';
-import 'package:demo_project/screens/forget_password.dart';
+import 'package:demo_project/screens/send_reset_password_info_screen.dart';
+import 'package:demo_project/screens/navigator_bar.dart';
 import 'package:demo_project/widgets/loginwidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,9 +19,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final formKey = GlobalKey<FormState>();
   String? codes;
   final phone = TextEditingController();
   final password = TextEditingController();
+  late final loginProvider = context.read<AuthProvider>();
 
   @override
   void dispose() {
@@ -32,8 +36,8 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: (AppBar(
-        leading:
-            IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back_ios_rounded)),
+        leading: IconButton(
+            onPressed: () {}, icon: const Icon(Icons.arrow_back_ios_rounded)),
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
         elevation: 0.0,
       )),
@@ -61,34 +65,43 @@ class _LoginState extends State<Login> {
               height: 1,
             ),
             Form(
+                key: formKey,
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        CountryCodePicker(
-                          onChanged: (value) {
-                            codes = value.dialCode;
-                          },
-                          showFlag: false,
-                        ),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        Expanded(
-                          child: TextFormField(
-                            decoration: const InputDecoration(
-                              labelText: 'phone',
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          children: [
+                            CountryCodePicker(
+                              onChanged: (value) {
+                                codes = value.dialCode;
+                              },
+                              showFlag: false,
                             ),
-                            controller: phone,
-                          ),
-                        )
-                      ],
-                    ))
-              ],
-            )),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Expanded(
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  labelText: 'phone',
+                                ),
+                                controller: phone,
+                                keyboardType: TextInputType.number,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'please enter the phone number';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            )
+                          ],
+                        ))
+                  ],
+                )),
             const SizedBox(
               height: 18,
             ),
@@ -108,62 +121,66 @@ class _LoginState extends State<Login> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Selector<PasswordVisibilityProvider,bool>(selector: (context, provider) =>provider.isPasswordVisible ,
-              builder: (context, isPasswordVisible, child) {
-                return  TextFormField(
-                decoration: InputDecoration(
-                    hintText: 'enter your password',
-                    suffixIcon: IconButton(
-                        onPressed: () {
-                           final passwordProvider =
-                            Provider.of<PasswordVisibilityProvider>(
-                                context,
-                                listen: false);
-                        passwordProvider.togglePasswordVisibility();
-
-                        },
-                        icon: Icon( isPasswordVisible
-                            ? Icons.visibility_off
-                            : Icons.visibility))),
-                autocorrect: false,
-                enableSuggestions: false,
-                obscureText: !isPasswordVisible,
-                controller: password,
-              )
-                ;
-              },
-                
+              child: Selector<PasswordVisibilityProvider, bool>(
+                selector: (context, provider) => provider.isPasswordVisible,
+                builder: (context, isPasswordVisible, child) {
+                  return TextFormField(
+                    decoration: InputDecoration(
+                        hintText: 'enter your password',
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              final passwordProvider =
+                                  Provider.of<PasswordVisibilityProvider>(
+                                      context,
+                                      listen: false);
+                              passwordProvider.togglePasswordVisibility();
+                            },
+                            icon: Icon(isPasswordVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility))),
+                    autocorrect: false,
+                    enableSuggestions: false,
+                    obscureText: !isPasswordVisible,
+                    controller: password,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'please enter password';
+                      } else {
+                        return null;
+                      }
+                    },
+                  );
+                },
               ),
             ),
             const SizedBox(
               height: 22,
             ),
-            Consumer<Authentication>(builder: (context, authlog, child) {
-              return ElevatedButton(
-                onPressed: () {
-                  if (phone.text.isEmpty || password.text.isEmpty) {
-                  } else {
-                    authlog.loginuser(
-                        phone: phone.text,
-                        password: password.text,
-                        context: context,
-                        code: codes!);
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                    minimumSize:
-                        Size(MediaQuery.of(context).size.width * .9, 64),
-                    backgroundColor: phone.text.isEmpty || password.text.isEmpty
-                        ?const Color.fromARGB(1, 26, 26, 26)
-                        : const Color(0x3FABAE).withOpacity(1),
-                    shape: const LinearBorder()),
-                child: Text('Log in',
-                    style: GoogleFonts.jost(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white)),
-              );
-            }),
+            Selector<AuthProvider, bool>(
+              selector: (ctx, isloadin) => isloadin.isloading,
+              builder: (context, issloading, child) {
+                return ElevatedButton(
+                  onPressed: _login,
+                  style: ElevatedButton.styleFrom(
+                      minimumSize:
+                          Size(MediaQuery.of(context).size.width * .9, 64),
+                      backgroundColor:
+                          phone.text.isEmpty || password.text.isEmpty
+                              ? const Color.fromARGB(1, 26, 26, 26)
+                              : const Color(0x3FABAE).withOpacity(1),
+                      shape: const LinearBorder()),
+                  child: issloading
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text('Log in',
+                          style: GoogleFonts.jost(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white)),
+                );
+              },
+            ),
             const SizedBox(
               height: 14,
             ),
@@ -208,14 +225,18 @@ class _LoginState extends State<Login> {
                 const SizedBox(
                   width: 4,
                 ),
-                InkWell(onTap: (){
-                 showModalBottomSheet(isScrollControlled: true,context: context, builder: ((context) =>const SignupScreen()));
-                
-                },
+                InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: ((context) => const SignupScreen()));
+                  },
                   child: Text(
                     'Sign up',
                     style: GoogleFonts.jost(
-                        color:const Color.fromARGB(1, 242, 85, 0).withOpacity(1)),
+                        color:
+                            const Color.fromARGB(1, 242, 85, 0).withOpacity(1)),
                   ),
                 )
               ],
@@ -224,5 +245,20 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  Future<void> _login() async {
+    if (formKey.currentState!.validate()) {
+      LoginRepo loginRepo = LoginRepo();
+      loginProvider.setaIsdloading(true);
+      final success = await loginRepo.login(
+          phone: phone.text.trim(), password: password.text, code: codes!);
+      loginProvider.setaIsdloading(false);
+      if (success) {
+        print('is very food');
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (ctx) => ButtonFixedNavigator()));
+      }
+    }
   }
 }

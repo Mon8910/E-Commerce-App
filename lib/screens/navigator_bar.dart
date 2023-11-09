@@ -23,17 +23,17 @@ class ButtonFixedNavigator extends StatelessWidget {
               screens: screens,
               items: [
       PersistentBottomNavBarItem(
-          icon:Icon(Icons.card_giftcard_sharp),
+          icon:const Icon(Icons.card_giftcard_sharp),
           title: 'occasions',
           activeColorPrimary: Colors.orange,
           inactiveColorPrimary: Colors.black),
       PersistentBottomNavBarItem(
-          icon: Icon(Icons.account_box_outlined),
+          icon:const Icon(Icons.account_box_outlined),
           title: 'account',
           activeColorPrimary: Colors.orange,
           inactiveColorPrimary: Colors.black)
     ],
-              decoration:NavBarDecoration(
+              decoration:const  NavBarDecoration(
                // border: Border.all(width: 4,color:const Color.fromARGB(0, 151, 151, 151).withOpacity(.25))
               ),
               navBarStyle: NavBarStyle.style6,

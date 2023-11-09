@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:demo_project/constants/variables.dart';
+import 'package:demo_project/constants/api_endpoints.dart';
 import 'package:demo_project/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -33,7 +33,7 @@ class Authentication extends ChangeNotifier {
 };
     print(body);
     try {
-      final url= Uri.parse(Appurl.resetnewpassword);
+      final url= Uri.parse(Appurl.forgetPasswordUrl);
       http.Response res =
           await http.post(url, body: json.encode(body), headers: {
         'Content-Type': 'application/json',

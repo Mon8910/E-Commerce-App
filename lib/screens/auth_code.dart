@@ -1,4 +1,3 @@
-import 'package:demo_project/providers/auth_code.dart';
 import 'package:demo_project/widgets/authcodewidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -93,33 +92,33 @@ class _AuthCodeState extends State<AuthCode> {
                 height: MediaQuery.of(context).size.height *.17,
                 
               ),
-              Consumer<AuthCodes>(builder: (context,authcode,child){
-                return  ElevatedButton(
-                    onPressed: () {
-                      if(codess.text.isEmpty){}
-                      else{
-                        authcode.authcodess(code: codess.text, context: context);
-                      }
+              // Consumer<AuthCodes>(builder: (context,authcode,child){
+              //   return  ElevatedButton(
+              //       onPressed: () {
+              //         if(codess.text.isEmpty){}
+              //         else{
+              //           authcode.authcodess(code: codess.text, context: context);
+              //         }
                     
                      
-                    },
+              //       },
                    
-                    style: ElevatedButton.styleFrom(
-                        minimumSize:
-                            Size(MediaQuery.of(context).size.width * .9, 64),
-                        backgroundColor:const Color(0x3FABAE).withOpacity(1),
-                        shape:const LinearBorder()),
-                         child: Text(
-                      'Next',
-                      style:GoogleFonts.jost(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white
-                      )
+              //       style: ElevatedButton.styleFrom(
+              //           minimumSize:
+              //               Size(MediaQuery.of(context).size.width * .9, 64),
+              //           backgroundColor:const Color(0x3FABAE).withOpacity(1),
+              //           shape:const LinearBorder()),
+              //            child: Text(
+              //         'Next',
+              //         style:GoogleFonts.jost(
+              //           fontSize: 18,
+              //           fontWeight: FontWeight.w700,
+              //           color: Colors.white
+              //         )
       
-                    ),
-                  );
-              })
+              //       ),
+              //     );
+              // })
               
             ],
           ),

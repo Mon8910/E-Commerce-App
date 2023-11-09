@@ -23,7 +23,7 @@ class _OccaisonsListDetailsState extends State<OccaisonsListDetails> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<ProductDetailsProvider>(context, listen: false)
-          .getdetails(widget.idproductdetails!);
+          .productDetailsProvider(widget.idproductdetails!);
     });
   }
 
@@ -36,7 +36,7 @@ class _OccaisonsListDetailsState extends State<OccaisonsListDetails> {
           child: Column(
             children: [
               Selector<ProductDetailsProvider, Product>(
-                selector: ((p0, p1) => p1.productlists),
+                selector: ((p0, p1) => p1.productDetails),
                 builder: (context, value, child) {
                   return SingleChildScrollView(
                     child: Column(
