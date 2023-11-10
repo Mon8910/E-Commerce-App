@@ -1,4 +1,3 @@
-import 'package:demo_project/displaydata/occaisons.dart';
 import 'package:demo_project/models/occaisons_list_model.dart';
 import 'package:demo_project/providers/occaisons_provider.dart';
 import 'package:demo_project/screens/products_occasion_screen.dart';
@@ -15,7 +14,6 @@ class Ocaions extends StatefulWidget {
 }
 
 class _OcaionsState extends State<Ocaions> {
-  final ocaisinprovider = Apiprovider();
 
   void initState() {
     super.initState();
@@ -25,8 +23,8 @@ class _OcaionsState extends State<Ocaions> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) {final provider=Provider.of<Occaisonsprovider>(context);
+    return  Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
         elevation: 0.0,
@@ -45,11 +43,12 @@ class _OcaionsState extends State<Ocaions> {
         ),
       ),
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
-      body: Selector<Occaisonsprovider, List<OccaionsModel>>(
+      body:provider.isloading?const Center(child:CircularProgressIndicator() ,) : Selector<Occaisonsprovider, List<OccaionsModel>>(
           builder: (context, value, child) {
             return ListView.builder(
                 itemCount: value.length,
                 itemBuilder: (context, index) {
+                  
                   return Padding(
                     padding: const EdgeInsets.all(12),
                     child: Container(

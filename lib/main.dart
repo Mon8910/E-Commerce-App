@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:demo_project/providers/login_provider.dart';
 import 'package:demo_project/providers/get_Occaisons_provider.dart';
+import 'package:demo_project/providers/login_provider.dart';
+import 'package:demo_project/providers/show_occasion_types_provider.dart';
 import 'package:demo_project/providers/logout_provider.dart';
 import 'package:demo_project/providers/navigator_bar_providers.dart';
 import 'package:demo_project/providers/occaisons_provider.dart';

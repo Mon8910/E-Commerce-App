@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 class GetOccaisonsprovider extends ChangeNotifier{
    bool isloadingproduct = false;
-   OccaionsModel ocdd=OccaionsModel();
+   OccaionsModel getOccaison=OccaionsModel();
    final occaionstypes=ShowOccaisonsRepo();
   
   Future<void> ocdprovider(int idmethod)async{
     isloadingproduct=true;
     notifyListeners();
-   final ocm=await occaionstypes.getoccaionsRepo(idmethod);
-   ocdd=ocm!;
+   final occaionTitke=await occaionstypes.getoccaionsRepo(idmethod);
+   getOccaison=occaionTitke!;
     
     isloadingproduct=false;
     notifyListeners();

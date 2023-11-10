@@ -29,8 +29,9 @@ class _OccaisonsListDetailsState extends State<OccaisonsListDetails> {
 
   @override
   Widget build(BuildContext context) {
+     final provider=Provider.of<ProductDetailsProvider>(context);
     return Scaffold(
-      body: Padding(
+      body:provider.isloading?const Center(child: CircularProgressIndicator(),): Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: SingleChildScrollView(
           child: Column(

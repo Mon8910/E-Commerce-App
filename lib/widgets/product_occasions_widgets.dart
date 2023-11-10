@@ -10,9 +10,11 @@ import 'package:provider/provider.dart';
 
 class ProductOccasionWidget extends StatelessWidget{
   const ProductOccasionWidget({super.key});
+  
   @override
   Widget build(BuildContext context) {
-   return  Column(
+    final provider=Provider.of<ProductOccaisons>(context);
+   return provider.isloading? const Center(child: CircularProgressIndicator(),): Column(
           //mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
@@ -31,11 +33,11 @@ class ProductOccasionWidget extends StatelessWidget{
                   leading: Image.asset(
                     'assets/images/discount-shape.png',
                   ),
-                  title: Selector<GetOccaisonsprovider,OccaionsModel>(selector: (p0, p1) => p1.ocdd,builder: (context,value,child){
+                  title: Selector<GetOccaisonsprovider,OccaionsModel>(selector: (p0, p1) => p1.getOccaison,builder: (context,value,child){
             return Text('Top offers for ${value.name.toString()}',style: GoogleFonts.jost(
                         fontSize: 14, fontWeight: FontWeight.w700),);
           },) ,
-                  subtitle:Selector<GetOccaisonsprovider,OccaionsModel>(selector: (p0, p1) => p1.ocdd,builder: (context,value,child){
+                  subtitle:Selector<GetOccaisonsprovider,OccaionsModel>(selector: (p0, p1) => p1.getOccaison,builder: (context,value,child){
             return Text('Discover top offers for ${value.name.toString()}’s gift and save money ' ,style: GoogleFonts.jost(
                         fontWeight: FontWeight.w400, fontSize: 10),);
           },),
