@@ -1,5 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:demo_project/providers/login_provider.dart';
+import 'package:demo_project/providers/auth_provider.dart';
 import 'package:demo_project/providers/navigator_bar_providers.dart';
 import 'package:demo_project/providers/occaisons_provider.dart';
 import 'package:demo_project/providers/product_list_details.dart';

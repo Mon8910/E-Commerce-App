@@ -1,4 +1,4 @@
-import 'package:demo_project/providers/login_provider.dart';
+import 'package:demo_project/providers/auth_provider.dart';
 import 'package:demo_project/providers/visiable_password.dart';
 import 'package:demo_project/repo/login_repo.dart';
 import 'package:demo_project/screen_plus_pdf/sign_up.dart';

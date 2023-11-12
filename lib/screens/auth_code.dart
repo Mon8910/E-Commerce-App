@@ -1,5 +1,5 @@
 
-import 'package:demo_project/providers/login_provider.dart';
+import 'package:demo_project/providers/auth_provider.dart';
 import 'package:demo_project/repo/verify_otp_repo.dart';
 import 'package:demo_project/screens/reset_newpassword_screen.dart';
 import 'package:demo_project/widgets/authcodewidgets.dart';
