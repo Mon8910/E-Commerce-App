@@ -12,8 +12,11 @@ class Appurl{
   static const String showOccasionsType='/lookups/occasion_types/';
   static const String resetNewPassword='/auth/passwords/customer/reset_password';
   
+  static const String productDetails='/products/';
+  static const String productOccasionType='/products?occasion_type_id=';
 
 }
 
 
 
+///products?occasion_type_id=

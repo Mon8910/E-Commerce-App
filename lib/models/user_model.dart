@@ -1,4 +1,4 @@
-class LoginModel  {
+class UserModel  {
   final int? id;
  final String? countrycode;
  final String? phoneNumber;
@@ -7,8 +7,8 @@ class LoginModel  {
  final String? userType;
 
 
-  LoginModel ({this.id, this.countrycode, this.phoneNumber, this.name,this.status,this.userType});
-  LoginModel .fromJson(Map<String, dynamic> json)
+  UserModel ({this.id, this.countrycode, this.phoneNumber, this.name,this.status,this.userType});
+  UserModel .fromJson(Map<String, dynamic> json)
       : id = json['id'],
         countrycode = json['country_code'],
         phoneNumber = json['phone_number'],

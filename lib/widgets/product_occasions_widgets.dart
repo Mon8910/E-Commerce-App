@@ -1,7 +1,7 @@
 import 'package:demo_project/models/ocaisons_products.dart';
 import 'package:demo_project/models/occaisons_list_model.dart';
-import 'package:demo_project/providers/get_Occaisons_provider.dart';
 import 'package:demo_project/providers/prooduct_list.dart';
+import 'package:demo_project/providers/show_occasion_types_provider.dart';
 import 'package:demo_project/screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,11 +33,11 @@ class ProductOccasionWidget extends StatelessWidget{
                   leading: Image.asset(
                     'assets/images/discount-shape.png',
                   ),
-                  title: Selector<GetOccaisonsprovider,OccaionsModel>(selector: (p0, p1) => p1.getOccaison,builder: (context,value,child){
+                  title: Selector<ShowOccaisonsProvider,OccaionsModel>(selector: (p0, p1) => p1.getOccaison,builder: (context,value,child){
             return Text('Top offers for ${value.name.toString()}',style: GoogleFonts.jost(
                         fontSize: 14, fontWeight: FontWeight.w700),);
           },) ,
-                  subtitle:Selector<GetOccaisonsprovider,OccaionsModel>(selector: (p0, p1) => p1.getOccaison,builder: (context,value,child){
+                  subtitle:Selector<ShowOccaisonsProvider,OccaionsModel>(selector: (p0, p1) => p1.getOccaison,builder: (context,value,child){
             return Text('Discover top offers for ${value.name.toString()}’s gift and save money ' ,style: GoogleFonts.jost(
                         fontWeight: FontWeight.w400, fontSize: 10),);
           },),

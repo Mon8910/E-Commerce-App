@@ -1,5 +1,4 @@
 import 'package:demo_project/providers/login_provider.dart';
-import 'package:demo_project/providers/logout_provider.dart';
 import 'package:demo_project/repo/logout_repo.dart';
 import 'package:demo_project/screens/login.dart';
 import 'package:flutter/material.dart';

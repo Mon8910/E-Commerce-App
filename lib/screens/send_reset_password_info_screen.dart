@@ -20,7 +20,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   String? codes;
   final phone=TextEditingController();
   final formKey = GlobalKey<FormState>();
-   late final sendRest = context.read<AuthProvider>();
+   late final sendRestProvider = context.read<AuthProvider>();
    
   @override
   void dispose() {
@@ -147,9 +147,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Future<void> _sendResetPassword()async{
     if(formKey.currentState!.validate()){
       SendResetPasswordRepo sendRestpasswordsRepo=SendResetPasswordRepo();
-      sendRest.setaIsdloading(true);
+      sendRestProvider.setaIsdloading(true);
       final success= await sendRestpasswordsRepo.sendRestPassword(phone: phone.text.trim(), code:codes! );
-      sendRest.setaIsdloading(false);
+      sendRestProvider.setaIsdloading(false);
       if(success){
         print('is very ok');
         // ignore: use_build_context_synchronously
