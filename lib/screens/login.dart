@@ -1,4 +1,4 @@
-import 'package:demo_project/providers/auth_provider.dart';
+import 'package:demo_project/providers/login_provider.dart';
 import 'package:demo_project/providers/visiable_password.dart';
 import 'package:demo_project/repo/login_repo.dart';
 import 'package:demo_project/screen_plus_pdf/sign_up.dart';
@@ -23,7 +23,7 @@ class _LoginState extends State<Login> {
   String? codes;
   final phone = TextEditingController();
   final password = TextEditingController();
-  late final loginProvider = context.read<AuthProvider>();
+  late final loginProvider = context.read<LoginProvider>();
 
   @override
   void dispose() {
@@ -156,11 +156,11 @@ class _LoginState extends State<Login> {
             const SizedBox(
               height: 22,
             ),
-            Selector<AuthProvider, bool>(
+            Selector<LoginProvider, bool>(
               selector: (ctx, isloadin) => isloadin.isloading,
               builder: (context, issloading, child) {
                 return ElevatedButton(
-                  onPressed: _login,
+                  onPressed:()=>issloading? {}:  _login(),
                   style: ElevatedButton.styleFrom(
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * .9, 64),
@@ -250,10 +250,10 @@ class _LoginState extends State<Login> {
   Future<void> _login() async {
     if (formKey.currentState!.validate()) {
       LoginRepo loginRepo = LoginRepo();
-      loginProvider.setaIsdloading(true);
+      loginProvider.setIsloading(true);
       final success = await loginRepo.login(
           phone: phone.text.trim(), password: password.text, code: codes!);
-      loginProvider.setaIsdloading(false);
+      loginProvider.setIsloading(false);
       if (success) {
         print('is very food');
         Navigator.of(context)

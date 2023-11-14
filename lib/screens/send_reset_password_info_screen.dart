@@ -1,5 +1,5 @@
 //import 'package:demo_project/screens/auth_code.dart';
-import 'package:demo_project/providers/auth_provider.dart';
+import 'package:demo_project/providers/send_reset_password.dart';
 import 'package:demo_project/repo/send_reset_password_info_repo.dart';
 import 'package:demo_project/screens/auth_code.dart';
 import 'package:demo_project/widgets/forgetpasswordwidgets.dart';
@@ -20,7 +20,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   String? codes;
   final phone=TextEditingController();
   final formKey = GlobalKey<FormState>();
-   late final sendRestProvider = context.read<AuthProvider>();
+   late final sendRestProvider = context.read<SendResetPasswordProvider>();
    
   @override
   void dispose() {
@@ -112,9 +112,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 )),
             
                 SizedBox(height: MediaQuery.of(context).size.height *.05,),
-            Selector<AuthProvider,bool>(selector: (ctx, load) =>load.isloading ,builder: (context, isloading, child) {
+            Selector<SendResetPasswordProvider,bool>(selector: (ctx, load) =>load.isloading ,builder: (context, isloading, child) {
               return  ElevatedButton(
-                  onPressed: _sendResetPassword,
+                  onPressed:()=>isloading? {}: _sendResetPassword(),
                  
                   style: ElevatedButton.styleFrom(
                       minimumSize:
@@ -147,9 +147,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Future<void> _sendResetPassword()async{
     if(formKey.currentState!.validate()){
       SendResetPasswordRepo sendRestpasswordsRepo=SendResetPasswordRepo();
-      sendRestProvider.setaIsdloading(true);
+      sendRestProvider.setIsloading(true);
       final success= await sendRestpasswordsRepo.sendRestPassword(phone: phone.text.trim(), code:codes! );
-      sendRestProvider.setaIsdloading(false);
+      sendRestProvider.setIsloading(false);
       if(success){
         print('is very ok');
         // ignore: use_build_context_synchronously

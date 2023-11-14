@@ -1,5 +1,4 @@
-
-import 'package:demo_project/providers/auth_provider.dart';
+import 'package:demo_project/providers/verify_otp_provider.dart';
 import 'package:demo_project/repo/verify_otp_repo.dart';
 import 'package:demo_project/screens/reset_newpassword_screen.dart';
 import 'package:demo_project/widgets/authcodewidgets.dart';
@@ -18,7 +17,7 @@ class AuthCode extends StatefulWidget {
 class _AuthCodeState extends State<AuthCode> {
   final codess = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  late final authProvider = context.read<AuthProvider>();
+  late final authProvider = context.read<VerifyOtpProvider>();
   @override
   void dispose() {
     codess.dispose();
@@ -102,9 +101,9 @@ class _AuthCodeState extends State<AuthCode> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * .17,
               ),
-              Selector<AuthProvider,bool>( selector: (ctx,isloading)=>isloading.isloading,builder: (context, isloading, child) {
+              Selector<VerifyOtpProvider,bool>( selector: (ctx,isloading)=>isloading.isloading,builder: (context, isloading, child) {
                 return ElevatedButton(
-                onPressed: verifyOtp,
+                onPressed:()=> isloading? {}: verifyOtp(),
                 style: ElevatedButton.styleFrom(
                     minimumSize:
                         Size(MediaQuery.of(context).size.width * .9, 64),
@@ -129,10 +128,10 @@ class _AuthCodeState extends State<AuthCode> {
   Future<void> verifyOtp() async {
     if (formKey.currentState!.validate()) {
       VerifyOtpRepo verifyOtpRepo = VerifyOtpRepo();
-      authProvider.setaIsdloading(true);
+      authProvider.setIsloading(true);
       final success =
           await verifyOtpRepo.verifyOtpRepo(otp: codess.text.trim());
-      authProvider.setaIsdloading(false);
+      authProvider.setIsloading(false);
       if (success) {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (ctx) => const ResetPassword()));
