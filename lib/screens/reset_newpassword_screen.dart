@@ -20,6 +20,12 @@ class _ResetPasswordState extends State<ResetPassword> {
   final password = TextEditingController();
   final confermationPassword = TextEditingController();
   late final resetProvider = context.read<ResetNewPasswordProvider>();
+  @override
+  void dispose() {
+    super.dispose();
+    password.dispose();
+    confermationPassword.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +66,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   style: GoogleFonts.jost(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
-                      color:
-                          const Color.fromARGB(1, 26, 26, 26).withOpacity(1)),
+                      color: const Color.fromARGB(1, 26, 26, 26)),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -78,8 +83,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                             child: Text('New Password',
                                 style: GoogleFonts.jost(
                                     fontSize: 14,
-                                    color: const Color.fromARGB(0, 0, 0, 0)
-                                        .withOpacity(.4),
+                                    color: const Color.fromARGB(0, 0, 0, 0),
                                     fontWeight: FontWeight.w500
                                     //   fontWeight: FontWeight.bold de hna 3shan
 
@@ -98,8 +102,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                                       hintStyle: GoogleFonts.jost(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
-                                          color: const Color(0x00000040)
-                                              .withOpacity(.2)),
+                                          color: const Color.fromARGB(
+                                              1, 26, 26, 26)),
                                       suffixIcon: IconButton(
                                           onPressed: () {
                                             final passwordProvider = Provider
@@ -133,14 +137,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                       style: GoogleFonts.jost(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
-                        color:
-                            const Color.fromARGB(1, 26, 26, 26).withOpacity(.7),
+                        color: const Color.fromARGB(1, 26, 26, 26),
                       )),
                 ),
                 const SizedBox(
                   height: 6,
                 ),
-                ConfirmPassword(),
+               const ResetPasswordWidgets(),
                 const SizedBox(
                   height: 18,
                 ),
@@ -154,8 +157,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         child: Text('New Password',
                             style: GoogleFonts.jost(
                                 fontSize: 14,
-                                color: const Color.fromARGB(0, 0, 0, 0)
-                                    .withOpacity(.4),
+                                color: const Color.fromARGB(0, 0, 0, 0),
                                 fontWeight: FontWeight.w500
                                 //   fontWeight: FontWeight.bold de hna 3shan
 
@@ -214,7 +216,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                             minimumSize: Size(
                                 MediaQuery.of(context).size.width * .9, 64),
                             backgroundColor:
-                                const Color(0x3FABAE).withOpacity(1),
+                                const Color.fromARGB(1, 63, 171, 174),
                             shape: const LinearBorder()),
                         child: isloading
                             ? const CircularProgressIndicator(

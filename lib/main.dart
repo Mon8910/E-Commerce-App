@@ -8,6 +8,7 @@ import 'package:demo_project/providers/prooduct_list.dart';
 import 'package:demo_project/providers/reset_new_password_provider.dart';
 import 'package:demo_project/providers/send_reset_password.dart';
 import 'package:demo_project/providers/show_occasion_types_provider.dart';
+import 'package:demo_project/providers/timer_provider.dart';
 import 'package:demo_project/providers/verify_otp_provider.dart';
 import 'package:demo_project/providers/visiable_password.dart';
 import 'package:demo_project/screens/login.dart';
@@ -34,16 +35,17 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ResetNewPasswordProvider()),
         ChangeNotifierProvider(create: (_) => VerifyOtpProvider()),
         ChangeNotifierProvider(create: (_) => SendResetPasswordProvider()),
-        ChangeNotifierProvider(create: (_) => ProductOccaisons()),
+        ChangeNotifierProvider(create: (_) => ProductOccaisonsProvider()),
         ChangeNotifierProvider(create: (_) => ProductDetailsProvider()),
         ChangeNotifierProvider(create: (_) => PasswordVisibilityProvider()),
         ChangeNotifierProvider(create: (_) => BottomNavBarProvider()),
         ChangeNotifierProvider(
-          create: (_) => Occaisonsprovider(),
+          create: (_) => OccaisonsProvider(),
         ),
         ChangeNotifierProvider(
           create: (_) => ShowOccaisonsProvider(),
-        )
+          
+        ),ChangeNotifierProvider(create: (_) => CountdownProvider()),
       ],
       child: MaterialApp(
           builder: DevicePreview.appBuilder,

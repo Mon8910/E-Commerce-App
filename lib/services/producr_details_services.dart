@@ -5,9 +5,9 @@ import 'package:http/http.dart' as http;
 import 'package:demo_project/constants/constantvar.dart';
 
 class ProductDetailsServices {
-  Future<http.Response> productDetailsServices(int idmethod) async {
+  Future<http.Response> productDetailsServices(int productDetailsId) async {
     final response = await http
-        .get(Uri.parse('${Einveromevt.baseurl}${Appurl.productDetails}$idmethod'));
+        .get(Uri.parse('${Einveromevt.baseurl}${Appurl.productDetails}$productDetailsId'));
     return response;
   }
 }

@@ -31,7 +31,7 @@ class AuthcodeWidgets extends StatelessWidget{
                 style: GoogleFonts.jost(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
-                    color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1)),
+                    color: const Color.fromARGB(1, 26, 26, 26)),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(
@@ -40,7 +40,7 @@ class AuthcodeWidgets extends StatelessWidget{
               Text(
                   'We have sent the code to create \n Your account to mobile number',
                   style: GoogleFonts.jost(
-                      color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1),
+                      color: const Color.fromARGB(1, 26, 26, 26),
                       fontWeight: FontWeight.w500,
                       fontSize: 18),
                   textAlign: TextAlign.center),
@@ -51,7 +51,7 @@ class AuthcodeWidgets extends StatelessWidget{
                 '01022492218',
                 // de l7d ma at3aml m3 el api3shan httb3t mn 5laloh.
                 style: GoogleFonts.jost(
-                    color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1),
+                    color: const Color.fromARGB(1, 26, 26, 26),
                     fontSize: 22,
                     fontWeight: FontWeight.w500),
                 textAlign: TextAlign.center,

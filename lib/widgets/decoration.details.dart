@@ -9,13 +9,13 @@ class DecorationDetails extends StatelessWidget{
     children: [
        Row(
                             children: [
-                              DesignContainer(color:const Color.fromARGB(1,217 , 217, 217).withOpacity(1)),
+                              DesignContainer(color:const Color.fromARGB(1,217 , 217, 217)),
                              const SizedBox(width: 10,),
-                              DesignContainer(color:const Color.fromARGB(1,234 , 142, 108).withOpacity(1)),
+                              DesignContainer(color:const Color.fromARGB(1,234 , 142, 108)),
                               const SizedBox(width: 10,),
-                              DesignContainer(color:const Color.fromARGB(1,110 , 122, 138).withOpacity(1)),
+                              DesignContainer(color:const Color.fromARGB(1,110 , 122, 138)),
                               const SizedBox(width: 10,),
-                              DesignContainer(color:const Color.fromARGB(1,63 , 171, 174).withOpacity(1)),
+                              DesignContainer(color:const Color.fromARGB(1,63 , 171, 174)),
 
 
 

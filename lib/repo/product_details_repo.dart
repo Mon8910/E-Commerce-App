@@ -4,9 +4,9 @@ import 'package:demo_project/models/ocaisons_products.dart';
 import 'package:demo_project/services/producr_details_services.dart';
 
 class ProductDetailsRepo{
-  final productDetailsRepo=ProductDetailsServices();
-  Future<Product?> getProductDetails(int idmethod)async{
-    final response=await productDetailsRepo.productDetailsServices(idmethod);
+  final productDetailsServices=ProductDetailsServices();
+  Future<Product?> getProductDetails(int productDetailsId)async{
+    final response=await productDetailsServices.productDetailsServices(productDetailsId);
     if(response.statusCode==200){
       final Map<String,dynamic>extractedData=json.decode(response.body);
       final productDetails=extractedData['data']['product'];

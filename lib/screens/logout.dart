@@ -44,8 +44,9 @@ class _LogoutState extends State<Logout> {
     final success = await logoutRepo.logout();
     logoutProvider.setIsloading(false);
     if (success) {
+      // ignore: use_build_context_synchronously
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: ((context) => Login())));
+          .push(MaterialPageRoute(builder: ((context) => const Login())));
     }
   }
 }

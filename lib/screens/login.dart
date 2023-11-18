@@ -54,7 +54,7 @@ class _LoginState extends State<Login> {
                 child: Text('phone number',
                     style: GoogleFonts.jost(
                         fontSize: 14,
-                        color: const Color.fromARGB(0, 0, 0, 0).withOpacity(.4),
+                        color: const Color.fromARGB(0, 0, 0, 0),
                         fontWeight: FontWeight.w500
                         //   fontWeight: FontWeight.bold de hna 3shan
 
@@ -112,7 +112,7 @@ class _LoginState extends State<Login> {
                 child: Text('Password',
                     style: GoogleFonts.jost(
                         fontSize: 14,
-                        color: const Color.fromARGB(0, 0, 0, 0).withOpacity(.4),
+                        color: const Color.fromARGB(0, 0, 0, 0),
                         fontWeight: FontWeight.w500
                         //   fontWeight: FontWeight.bold de hna 3shan
 
@@ -160,14 +160,14 @@ class _LoginState extends State<Login> {
               selector: (ctx, isloadin) => isloadin.isloading,
               builder: (context, issloading, child) {
                 return ElevatedButton(
-                  onPressed:()=>issloading? {}:  _login(),
+                  onPressed: () => issloading ? {} : _login(),
                   style: ElevatedButton.styleFrom(
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * .9, 64),
                       backgroundColor:
                           phone.text.isEmpty || password.text.isEmpty
                               ? const Color.fromARGB(1, 26, 26, 26)
-                              : const Color(0x3FABAE).withOpacity(1),
+                              : const Color.fromARGB(1, 171, 174, 63),
                       shape: const LinearBorder()),
                   child: issloading
                       ? const CircularProgressIndicator(
@@ -199,7 +199,7 @@ class _LoginState extends State<Login> {
                       style: GoogleFonts.jost(
                           fontSize: 12,
                           color: const Color.fromARGB(1, 26, 26, 26)
-                              .withOpacity(.8),
+                              ,
                           fontWeight: FontWeight.w500
                           //   fontWeight: FontWeight.bold de hna 3shan
 
@@ -236,7 +236,7 @@ class _LoginState extends State<Login> {
                     'Sign up',
                     style: GoogleFonts.jost(
                         color:
-                            const Color.fromARGB(1, 242, 85, 0).withOpacity(1)),
+                            const Color.fromARGB(1, 242, 85, 0)),
                   ),
                 )
               ],
@@ -255,7 +255,7 @@ class _LoginState extends State<Login> {
           phone: phone.text.trim(), password: password.text, code: codes!);
       loginProvider.setIsloading(false);
       if (success) {
-        print('is very food');
+        
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (ctx) => ButtonFixedNavigator()));
       }

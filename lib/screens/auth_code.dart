@@ -1,7 +1,8 @@
+import 'package:demo_project/providers/timer_provider.dart';
 import 'package:demo_project/providers/verify_otp_provider.dart';
 import 'package:demo_project/repo/verify_otp_repo.dart';
 import 'package:demo_project/screens/reset_newpassword_screen.dart';
-import 'package:demo_project/widgets/authcodewidgets.dart';
+import 'package:demo_project/widgets/auth_code_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
@@ -64,11 +65,11 @@ class _AuthCodeState extends State<AuthCode> {
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
                                 color: const Color.fromARGB(1, 26, 26, 26)
-                                    .withOpacity(1)),
+                                    ),
                             decoration: BoxDecoration(
                               border: Border.all(
                                   color: const Color.fromRGBO(1, 26, 26, 26)
-                                      .withOpacity(1)),
+                                      ),
                               shape: BoxShape.rectangle,
                             )),
                       )
@@ -77,47 +78,65 @@ class _AuthCodeState extends State<AuthCode> {
               const SizedBox(
                 height: 15,
               ),
-              Text(
-                'Resend code',
-                style: GoogleFonts.jost(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color:
-                        const Color.fromARGB(1, 174, 190, 205).withOpacity(1)),
+                Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Selector<CountdownProvider, int>(
+                selector: (_, countdownProvider) =>
+                    countdownProvider.remainingSeconds,
+                builder: (context, remainingSeconds, _) {
+                  return Column(
+                    children: [
+                      remainingSeconds == 0
+                          ?Selector<VerifyOtpProvider, bool>(
+                            selector: (_, myType) => myType.isloading,
+                            builder: (context, isloading, child) {
+                              return  InkWell(
+                              onTap:()=> isloading? {}: verifyOtp(),
+                              child: Text(
+                                'Resend code',
+                                style: TextStyle(color: Colors.grey[400]),
+                              ),
+                            ) ;
+                            },
+                          )
+                          :const SizedBox(),
+                    const  SizedBox(height: 20),
+                      remainingSeconds != 0 ? Text('$remainingSeconds s') : SizedBox(),
+                    ],
+                  );
+                },
               ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                '55 s',
-                // de nfs el klam l7d ma abd2 fel otp
-
-                style: GoogleFonts.jost(
-                    color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w200),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
+            ],
+          ),
+        )
+              
+              ,SizedBox(
                 height: MediaQuery.of(context).size.height * .17,
               ),
-              Selector<VerifyOtpProvider,bool>( selector: (ctx,isloading)=>isloading.isloading,builder: (context, isloading, child) {
-                return ElevatedButton(
-                onPressed:()=> isloading? {}: verifyOtp(),
-                style: ElevatedButton.styleFrom(
-                    minimumSize:
-                        Size(MediaQuery.of(context).size.width * .9, 64),
-                    backgroundColor: const Color(0x3FABAE).withOpacity(1),
-                    shape: const LinearBorder()),
-                child:isloading? const CircularProgressIndicator(color: Colors.white,):Text('Next',
-                    style: GoogleFonts.jost(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white)),
-              );
-                
-              },)
-              
+              Selector<VerifyOtpProvider, bool>(
+                selector: (ctx, isloading) => isloading.isloading,
+                builder: (context, isloading, child) {
+                  return ElevatedButton(
+                    onPressed: () => isloading ? {} : verifyOtp(),
+                    style: ElevatedButton.styleFrom(
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width * .9, 64),
+                        backgroundColor: const   Color.fromARGB(1,63,171,174),
+                        shape: const LinearBorder()),
+                    child: isloading
+                        ? const CircularProgressIndicator(
+                            color: Colors.white,
+                          )
+                        : Text('Next',
+                            style: GoogleFonts.jost(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white)),
+                  );
+                },
+              )
             ],
           ),
         ),
@@ -133,6 +152,7 @@ class _AuthCodeState extends State<AuthCode> {
           await verifyOtpRepo.verifyOtpRepo(otp: codess.text.trim());
       authProvider.setIsloading(false);
       if (success) {
+        // ignore: use_build_context_synchronously
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (ctx) => const ResetPassword()));
       }

@@ -10,9 +10,9 @@ class DesignButton extends StatelessWidget {
     return TextButton(
       onPressed: () {},
       style: TextButton.styleFrom(
-        side: BorderSide(
+        side:const BorderSide(
             width: 1.5,
-            color: const Color.fromARGB(1, 151, 151, 151).withOpacity(1)),
+            color:  Color.fromARGB(1, 151, 151, 151)),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -22,7 +22,7 @@ class DesignButton extends StatelessWidget {
         style: GoogleFonts.jost(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: const Color.fromARGB(1, 151, 151, 151).withOpacity(1)),
+            color: const Color.fromARGB(1, 151, 151, 151)),
       ),
     );
   }

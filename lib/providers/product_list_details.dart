@@ -3,17 +3,20 @@ import 'package:demo_project/repo/product_details_repo.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsProvider extends ChangeNotifier{
-  bool isloading=false;
-  Product productDetails=Product();
-  final productDetailsProviders=ProductDetailsRepo();
-  Future<void> productDetailsProvider(int idmethod)async{
-    isloading=true;
-    notifyListeners();
-    final productDetail=await productDetailsProviders.getProductDetails(idmethod);
-    productDetails=productDetail!;
-    isloading=false;
+ bool _isloading=false;
+  bool get isloading=>_isloading;
+  void setIsloading(bool val){
+    _isloading=val;
     notifyListeners();
   }
+  Product productDetails=Product();
+  final productDetailsRepo=ProductDetailsRepo();
+  
+   void updateProductDetails(Product value){
+    productDetails=value;
+    notifyListeners();
+   }
+  
 }
 
 

@@ -3,9 +3,9 @@ import 'package:demo_project/constants/constantvar.dart';
 import 'package:http/http.dart' as http;
 
 class ProductListServices {
-  Future<http.Response> productListType(int idmethod) async {
+  Future<http.Response> productListType(int productListId) async {
     final response = await http
-        .get(Uri.parse('${Einveromevt.baseurl}${Appurl.productOccasionType}$idmethod'));
+        .get(Uri.parse('${Einveromevt.baseurl}${Appurl.productOccasionType}$productListId'));
     return response;
   }
 }

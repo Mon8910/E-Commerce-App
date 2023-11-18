@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class ButtonFixedNavigator extends StatelessWidget {
   ButtonFixedNavigator({super.key});
 
-  List<Widget> screens = const [ Ocaions(), Logout()];
+  List<Widget> screens = const [ OccasionsScreen(), Logout()];
   
 
   @override

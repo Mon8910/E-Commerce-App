@@ -25,6 +25,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   @override
   void dispose() {
     phone.dispose();
+    
     super.dispose();
   }
 
@@ -58,7 +59,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         style: GoogleFonts.jost(
                             fontSize: 12,
                             color: const Color.fromARGB(0, 0, 0, 0)
-                                .withOpacity(.5),
+                                ,
                             fontWeight: FontWeight.w500
                             //   fontWeight: FontWeight.bold de hna 3shan
 
@@ -119,7 +120,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   style: ElevatedButton.styleFrom(
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * .9, 64),
-                      backgroundColor:phone.text.isEmpty? const Color.fromARGB(1, 26, 26, 26): const  Color(0x3FABAE).withOpacity(1),
+                      backgroundColor:phone.text.isEmpty? const Color.fromARGB(1, 26, 26, 26): const  Color.fromARGB(1,63,171,174),
                       shape:const LinearBorder()),
                        child:isloading?const CircularProgressIndicator(
                         color: Colors.white,

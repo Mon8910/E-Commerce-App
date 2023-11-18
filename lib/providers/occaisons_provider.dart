@@ -1,29 +1,19 @@
-
 import 'package:demo_project/models/occaisons_list_model.dart';
 import 'package:demo_project/repo/occasion_types_list_repo.dart';
 import 'package:flutter/material.dart';
-class Occaisonsprovider extends ChangeNotifier{
-   bool isloading=false;
-   List<OccaionsModel>occaionsList=[];
-  final occaionsRepo=OccasionsRepo();
-  Future<void> occaisonsprovider()async{
-    isloading=true;
+
+class OccaisonsProvider extends ChangeNotifier {
+  bool _isloading=false;
+  bool get isloading=>_isloading;
+  void setIsloading(bool val){
+    _isloading=val;
     notifyListeners();
-    final listoccaions=await occaionsRepo.occaions();
-    occaionsList=listoccaions!;
-   
-    
-        
-        
-         
-     
-        isloading=false;
-        notifyListeners();
-        
-
-      
-    }
+  }
+  List<OccaionsModel> occaionsList = [];
+  final occaionsRepo = OccasionsRepo();
+  void updateOccaisonList(List<OccaionsModel> value){
+    occaionsList=value;
+    notifyListeners();
+  }
+  
 }
-
-
-

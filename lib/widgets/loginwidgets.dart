@@ -25,7 +25,7 @@ class LoginWidget extends StatelessWidget{
                   'Welcome back ',
                   style: GoogleFonts.jost(
                       fontSize: 24,
-                      color: const Color.fromARGB(26, 26, 26, 1).withOpacity(1),
+                      color: const Color.fromARGB(26, 26, 26, 1),
                       fontWeight: FontWeight.w700
                       //   fontWeight: FontWeight.bold de hna 3shan
 
@@ -36,7 +36,7 @@ class LoginWidget extends StatelessWidget{
                   'log in ',
                   style: GoogleFonts.jost(
                       color:
-                          const Color.fromARGB(26, 26, 26, 1).withOpacity(.5),
+                          const Color.fromARGB(26, 26, 26, 1),
                       fontSize: 24,
                       fontWeight: FontWeight.w700),
                 ),

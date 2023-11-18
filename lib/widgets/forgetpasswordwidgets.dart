@@ -26,7 +26,7 @@ class ForgetpasswordWidget extends StatelessWidget{
               style: GoogleFonts.jost(
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
-                 color:const Color.fromARGB(1, 26, 26, 26).withOpacity(1)
+                 color:const Color.fromARGB(1, 26, 26, 26)
               ),
               textAlign: TextAlign.center,
             ),
@@ -34,7 +34,7 @@ class ForgetpasswordWidget extends StatelessWidget{
                 style:
                     GoogleFonts.jost(fontSize: 12, 
                     fontWeight: FontWeight.w400,
-                    color:const Color.fromARGB(1, 146, 159, 177).withOpacity(1)
+                    color:const Color.fromARGB(1, 146, 159, 177)
                     ),
                 textAlign: TextAlign.center),
                 const SizedBox(
