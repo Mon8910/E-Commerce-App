@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class ShowOccaisonsProvider extends ChangeNotifier{
    bool isloadingproduct = false;
    OccaionsModel getOccaison=OccaionsModel();
-   final showOccaionsTypes=ShowOccaisonsRepo();
+   final showOccaionsRepo=ShowOccaisonsRepo();
    void updateOccaisonShow(OccaionsModel value){
     getOccaison=value;
     notifyListeners();
