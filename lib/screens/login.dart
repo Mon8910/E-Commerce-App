@@ -1,13 +1,13 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:demo_project/providers/login_provider.dart';
 import 'package:demo_project/providers/visiable_password.dart';
 import 'package:demo_project/repo/login_repo.dart';
 import 'package:demo_project/screen_plus_pdf/sign_up.dart';
-import 'package:demo_project/screens/send_reset_password_info_screen.dart';
 import 'package:demo_project/screens/navigator_bar.dart';
+import 'package:demo_project/screens/send_reset_password_info_screen.dart';
 import 'package:demo_project/widgets/loginwidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
