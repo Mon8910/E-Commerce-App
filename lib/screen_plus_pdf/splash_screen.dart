@@ -69,7 +69,7 @@ class Splash1Screen extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromARGB(1, 63, 171, 174)
-                                      .withOpacity(1),
+                                     ,
                               shape: const RoundedRectangleBorder()),
                           child: Text(
                             'next',
