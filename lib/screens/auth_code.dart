@@ -92,7 +92,7 @@ class _AuthCodeScreenState extends State<AuthCodeScreen> {
                                     builder: (context, isloading, child) {
                                       return InkWell(
                                         onTap: () =>
-                                            isloading ? {} : verifyOtp(),
+                                            isloading ? {} : _verifyOtp(),
                                         child: Text(
                                           'Resend code',
                                           style: TextStyle(
@@ -120,7 +120,7 @@ class _AuthCodeScreenState extends State<AuthCodeScreen> {
                 selector: (ctx, isloading) => isloading.isloading,
                 builder: (context, isloading, child) {
                   return ElevatedButton(
-                    onPressed: () => isloading ? {} : verifyOtp(),
+                    onPressed: () => isloading ? {} : _verifyOtp(),
                     style: ElevatedButton.styleFrom(
                         minimumSize:
                             Size(MediaQuery.of(context).size.width * .9, 64),
@@ -145,7 +145,7 @@ class _AuthCodeScreenState extends State<AuthCodeScreen> {
     );
   }
 
-  Future<void> verifyOtp() async {
+  Future<void> _verifyOtp() async {
     if (formKey.currentState!.validate()) {
       VerifyOtpRepo verifyOtpRepo = VerifyOtpRepo();
       authProvider.setIsloading(true);
