@@ -8,9 +8,9 @@ class ShowOccaisonsRepo {
   Future<OccaionsModel?> showOccaison(int showOccaionsId) async {
     final response = await showOccaionsSerices.occaionsTypes(showOccaionsId);
     if (response.statusCode == 200) {
-      final Map<String, dynamic> datam = json.decode(response.body);
+      final Map<String, dynamic> extractedData = json.decode(response.body);
       print('bodu is ready ok ${response.body}');
-      final occaionsData = datam['data']['occasion_type'];
+      final occaionsData = extractedData['data']['occasion_type'];
       final data=OccaionsModel.fromJson(occaionsData);
 
       return data;
