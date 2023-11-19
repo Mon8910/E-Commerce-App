@@ -5,7 +5,7 @@ import 'package:demo_project/repo/login_repo.dart';
 import 'package:demo_project/screen_plus_pdf/sign_up.dart';
 import 'package:demo_project/screens/navigator_bar.dart';
 import 'package:demo_project/screens/send_reset_password_info_screen.dart';
-import 'package:demo_project/widgets/loginwidgets.dart';
+import 'package:demo_project/widgets/login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
