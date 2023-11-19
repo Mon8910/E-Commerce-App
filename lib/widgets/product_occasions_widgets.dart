@@ -116,7 +116,7 @@ class ProductListWidget extends StatelessWidget {
                                             fontWeight: FontWeight.w500,
                                             color: const Color.fromARGB(
                                                     1, 26, 26, 26)
-                                                .withOpacity(1)),
+                                                ),
                                       ),
                                       const SizedBox(
                                         width: 4,

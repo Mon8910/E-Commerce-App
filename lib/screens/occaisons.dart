@@ -115,7 +115,7 @@ class _OccasionsScreenState extends State<OccasionsScreen> {
                                                         color: const Color
                                                                 .fromARGB(1,
                                                                 255, 255, 255)
-                                                            .withOpacity(1)),
+                                                            ),
                                                   ),
                                                 ],
                                               ),

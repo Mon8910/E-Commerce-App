@@ -256,6 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
       loginProvider.setIsloading(false);
       if (success) {
         
+        // ignore: use_build_context_synchronously
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (ctx) => ButtonFixedNavigatorScreen()));
       }

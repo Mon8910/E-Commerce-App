@@ -143,7 +143,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 const SizedBox(
                   height: 6,
                 ),
-               const ResetPasswordWidgets(),
+                const ResetPasswordWidgets(),
                 const SizedBox(
                   height: 18,
                 ),
@@ -176,7 +176,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   hintStyle: GoogleFonts.jost(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
-                                      color: const Color(0x00000040)
+                                      color: const Color.fromRGBO(0, 0, 64, 0)
                                           .withOpacity(.2)),
                                   suffixIcon: IconButton(
                                       onPressed: () {

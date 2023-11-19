@@ -93,8 +93,8 @@ class _SignupScreenState extends State<SignupScreen> {
             Container(
               width: double.infinity,
               height: MediaQuery.sizeOf(context).height * .062,
-              decoration: BoxDecoration(
-                  color: const Color.fromARGB(1, 248, 248, 248).withOpacity(1)),
+              decoration:const BoxDecoration(
+                  color:  Color.fromARGB(1, 248, 248, 248)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
@@ -112,7 +112,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: const Color.fromARGB(1, 26, 26, 26)
-                              .withOpacity(1)),
+                              ),
                     ),
                   ],
                 ),
@@ -123,10 +123,10 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
             Row(
               children: [
-                Expanded(
+              const  Expanded(
                   child: Divider(
                     color:
-                        const Color.fromARGB(1, 110, 122, 138).withOpacity(.18),
+                         Color.fromARGB(1, 110, 122, 138),
                     thickness: 1.0,
                   ),
                 ),
@@ -137,7 +137,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: const Color.fromARGB(1, 110, 122, 138)
-                              .withOpacity(1))),
+                              )),
                 ),
                 Expanded(
                   child: Divider(

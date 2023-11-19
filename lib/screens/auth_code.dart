@@ -91,7 +91,7 @@ class _AuthCodeScreenState extends State<AuthCodeScreen> {
                           children: [
                             remainingSeconds == 0
                                 ? Selector<VerifyOtpProvider, bool>(
-                                    selector: (_, myType) => myType.isloading,
+                                    selector: (ctx, islodaing) => islodaing.isloading,
                                     builder: (context, isloading, child) {
                                       return InkWell(
                                         onTap: () =>

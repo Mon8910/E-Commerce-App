@@ -28,7 +28,7 @@ class CountDownWidget extends StatelessWidget{
                             )
                           :const SizedBox(),
                     const  SizedBox(height: 20),
-                      remainingSeconds != 0 ? Text('$remainingSeconds s') : SizedBox(),
+                      remainingSeconds != 0 ? Text('$remainingSeconds s') :const SizedBox(),
                     ],
                   );
                 },
