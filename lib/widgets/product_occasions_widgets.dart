@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ProductOccasionWidget extends StatelessWidget {
-  const ProductOccasionWidget({super.key});
+class ProductListWidget extends StatelessWidget {
+  const ProductListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

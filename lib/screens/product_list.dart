@@ -57,7 +57,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
           elevation: 0.0,
         ),
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
-        body: const ProductOccasionWidget());
+        body: const ProductListWidget());
       },
     );
   }

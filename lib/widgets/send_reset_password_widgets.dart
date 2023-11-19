@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ForgetpasswordWidget extends StatelessWidget{
-  const ForgetpasswordWidget({super.key});
+class SendResetPasswordWidget extends StatelessWidget{
+  const SendResetPasswordWidget({super.key});
   @override
   Widget build(BuildContext context) {
     return Column(

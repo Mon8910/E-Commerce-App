@@ -192,7 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return const ForgetPassword();
+                      return const SendResetPasswordScreen();
                     }));
                   },
                   child: Text('Forget password ?',
@@ -257,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (success) {
         
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (ctx) => ButtonFixedNavigator()));
+            .push(MaterialPageRoute(builder: (ctx) => ButtonFixedNavigatorScreen()));
       }
     }
   }

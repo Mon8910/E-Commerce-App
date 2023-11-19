@@ -4,14 +4,14 @@ import 'package:demo_project/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Logout extends StatefulWidget {
-  const Logout({super.key});
+class LogoutScreen extends StatefulWidget {
+  const LogoutScreen({super.key});
 
   @override
-  State<Logout> createState() => _LogoutState();
+  State<LogoutScreen> createState() => _LogoutScreenState();
 }
 
-class _LogoutState extends State<Logout> {
+class _LogoutScreenState extends State<LogoutScreen> {
   late final logoutProvider = context.read<LogoutProvider>();
   @override
   Widget build(BuildContext context) {

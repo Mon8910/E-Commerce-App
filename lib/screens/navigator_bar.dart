@@ -6,10 +6,10 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
-class ButtonFixedNavigator extends StatelessWidget {
-  ButtonFixedNavigator({super.key});
+class ButtonFixedNavigatorScreen extends StatelessWidget {
+  ButtonFixedNavigatorScreen({super.key});
 
-  List<Widget> screens = const [ OccasionsScreen(), Logout()];
+  List<Widget> screens = const [ OccasionsScreen(), LogoutScreen()];
   
 
   @override

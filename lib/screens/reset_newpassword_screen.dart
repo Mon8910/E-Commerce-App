@@ -2,20 +2,20 @@ import 'package:demo_project/providers/reset_new_password_provider.dart';
 import 'package:demo_project/providers/visiable_password.dart';
 import 'package:demo_project/repo/reset_new_password_repo.dart';
 import 'package:demo_project/screens/login.dart';
-import 'package:demo_project/widgets/reset_passwordwidgets.dart';
+import 'package:demo_project/widgets/reset_newpassword_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ResetPassword extends StatefulWidget {
-  const ResetPassword({super.key});
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
   @override
   State<StatefulWidget> createState() {
-    return _ResetPasswordState();
+    return _ResetPasswordScreenState();
   }
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final formKey = GlobalKey<FormState>();
   final password = TextEditingController();
   final confermationPassword = TextEditingController();

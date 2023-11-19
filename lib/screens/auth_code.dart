@@ -57,6 +57,9 @@ class _AuthCodeScreenState extends State<AuthCodeScreen> {
                           if (value == null || value.isEmpty) {
                             return 'please enter the code';
                           }
+                          // else{
+                          //   return null;
+                          // }
                         },
                         defaultPinTheme: PinTheme(
                             width: 43,
@@ -155,7 +158,7 @@ class _AuthCodeScreenState extends State<AuthCodeScreen> {
       if (success) {
         // ignore: use_build_context_synchronously
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (ctx) => const ResetPassword()));
+            .push(MaterialPageRoute(builder: (ctx) => const ResetPasswordScreen()));
       }
     }
   }

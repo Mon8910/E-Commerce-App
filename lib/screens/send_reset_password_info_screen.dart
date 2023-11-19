@@ -1,21 +1,21 @@
 import 'package:demo_project/providers/send_reset_password.dart';
 import 'package:demo_project/repo/send_reset_password_info_repo.dart';
 import 'package:demo_project/screens/auth_code.dart';
-import 'package:demo_project/widgets/forgetpasswordwidgets.dart';
+import 'package:demo_project/widgets/send_reset_password_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:provider/provider.dart';
 
-class ForgetPassword extends StatefulWidget {
-  const ForgetPassword({super.key});
+class SendResetPasswordScreen extends StatefulWidget {
+  const SendResetPasswordScreen({super.key});
   @override
-  State<ForgetPassword> createState() {
-    return _ForgetPasswordState();
+  State<SendResetPasswordScreen> createState() {
+    return _SendResetPasswordScreenState();
   }
 }
 
-class _ForgetPasswordState extends State<ForgetPassword> {
+class _SendResetPasswordScreenState extends State<SendResetPasswordScreen> {
   String? codes;
   final phone = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -46,7 +46,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const ForgetpasswordWidget(),
+            const SendResetPasswordWidget(),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
