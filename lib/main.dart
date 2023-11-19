@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
                 height: MediaQuery.sizeOf(context).height * .72,
                 child: Image.asset('assets/images/cadeau logo.png'),
               ),
-              nextScreen: const Login())),
+              nextScreen: const LoginScreen())),
     );
   }
 }

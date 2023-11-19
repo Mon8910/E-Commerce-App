@@ -248,7 +248,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       if (success) {
         // ignore: use_build_context_synchronously
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (ctx) => const Login()));
+            .push(MaterialPageRoute(builder: (ctx) => const LoginScreen()));
       }
     }
   }

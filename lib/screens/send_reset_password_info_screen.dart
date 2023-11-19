@@ -1,4 +1,3 @@
-//import 'package:demo_project/screens/auth_code.dart';
 import 'package:demo_project/providers/send_reset_password.dart';
 import 'package:demo_project/repo/send_reset_password_info_repo.dart';
 import 'package:demo_project/screens/auth_code.dart';
@@ -18,18 +17,17 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   String? codes;
-  final phone=TextEditingController();
+  final phone = TextEditingController();
   final formKey = GlobalKey<FormState>();
-   late final sendRestProvider = context.read<SendResetPasswordProvider>();
-   
+  late final sendRestProvider = context.read<SendResetPasswordProvider>();
+
   @override
   void dispose() {
     phone.dispose();
-    
+
     super.dispose();
   }
 
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,117 +46,106 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-          const  ForgetpasswordWidget(),
-           
-                Align(
-                  
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding:const EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-                    child: Text('phone number',
-                        style: GoogleFonts.jost(
-                            fontSize: 12,
-                            color: const Color.fromARGB(0, 0, 0, 0)
-                                ,
-                            fontWeight: FontWeight.w500
-                            //   fontWeight: FontWeight.bold de hna 3shan
+            const ForgetpasswordWidget(),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                child: Text('phone number',
+                    style: GoogleFonts.jost(
+                        fontSize: 12,
+                        color: const Color.fromARGB(0, 0, 0, 0),
+                        fontWeight: FontWeight.w500
+                        //   fontWeight: FontWeight.bold de hna 3shan
 
-                            )),
-                  ),
-                ),
-                const SizedBox(
-                  height: 1,
-                ),
-                Form(key: formKey,
-                    child: Column(
+                        )),
+              ),
+            ),
+            const SizedBox(
+              height: 1,
+            ),
+            Form(
+                key: formKey,
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
-                    children: [
-                      CountryCodePicker(
-                        boxDecoration:const BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide()
+                      children: [
+                        CountryCodePicker(
+                          boxDecoration: const BoxDecoration(
+                            border: Border(bottom: BorderSide()),
                           ),
-                          
-                        ),
-                        onChanged: (value) {
-                          codes=value.dialCode;
-                          
-                        },
-                      ),
-                     const SizedBox(
-                        width: 4,
-                      ),
-                      Expanded(
-                        child: TextFormField(
-                          decoration:const InputDecoration(
-                            labelText: 'phone',
-                      
-                          ),
-                          controller: phone,
-                          validator: (value) {
-                            if(value==null||value.isEmpty){
-                              return 'Enter your phone';
-                            }
-                            
+                          onChanged: (value) {
+                            codes = value.dialCode;
                           },
-                      
-                      
                         ),
-                      )
-                    ],
-                  )
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              labelText: 'phone',
+                            ),
+                            controller: phone,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Enter your phone';
+                              }
+                            },
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 )),
-            
-                SizedBox(height: MediaQuery.of(context).size.height *.05,),
-            Selector<SendResetPasswordProvider,bool>(selector: (ctx, load) =>load.isloading ,builder: (context, isloading, child) {
-              return  ElevatedButton(
-                  onPressed:()=>isloading? {}: _sendResetPassword(),
-                 
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .05,
+            ),
+            Selector<SendResetPasswordProvider, bool>(
+              selector: (ctx, load) => load.isloading,
+              builder: (context, isloading, child) {
+                return ElevatedButton(
+                  onPressed: () => isloading ? {} : _sendResetPassword(),
                   style: ElevatedButton.styleFrom(
                       minimumSize:
                           Size(MediaQuery.of(context).size.width * .9, 64),
-                      backgroundColor:phone.text.isEmpty? const Color.fromARGB(1, 26, 26, 26): const  Color.fromARGB(1,63,171,174),
-                      shape:const LinearBorder()),
-                       child:isloading?const CircularProgressIndicator(
-                        color: Colors.white,
-                       ) :
-                       Text(
-                    'Next',
-                    style:GoogleFonts.jost(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white
-                    )
-
-                  ),
+                      backgroundColor: phone.text.isEmpty
+                          ? const Color.fromARGB(1, 26, 26, 26)
+                          : const Color.fromARGB(1, 63, 171, 174),
+                      shape: const LinearBorder()),
+                  child: isloading
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text('Next',
+                          style: GoogleFonts.jost(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white)),
                 );
-              
-            },)
-                
-                
-              ,
+              },
+            ),
           ],
         ),
       )),
     );
   }
-  Future<void> _sendResetPassword()async{
-    if(formKey.currentState!.validate()){
-      SendResetPasswordRepo sendRestpasswordsRepo=SendResetPasswordRepo();
+
+  Future<void> _sendResetPassword() async {
+    if (formKey.currentState!.validate()) {
+      SendResetPasswordRepo sendRestpasswordsRepo = SendResetPasswordRepo();
       sendRestProvider.setIsloading(true);
-      final success= await sendRestpasswordsRepo.sendRestPassword(phone: phone.text.trim(), code:codes! );
+      final success = await sendRestpasswordsRepo.sendRestPassword(
+          phone: phone.text.trim(), code: codes!);
       sendRestProvider.setIsloading(false);
-      if(success){
+      if (success) {
         print('is very ok');
         // ignore: use_build_context_synchronously
-        Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const AuthCode()));
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (ctx) => const AuthCodeScreen()));
       }
-
-
     }
-
   }
 }

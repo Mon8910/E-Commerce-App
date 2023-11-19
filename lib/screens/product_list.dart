@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({super.key, this.idProductList});
-  final int? idProductList;
+  const ProductListScreen({super.key, this.productListId});
+  final int? productListId;
 
   @override
   State<ProductListScreen> createState() {
@@ -65,20 +65,25 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Future<void> _showOccaisonType() async {
     ShowOccaisonsRepo occaisonsRepo = ShowOccaisonsRepo();
     OccaionsModel? showOccaionsTypes =
-        await occaisonsRepo.showOccaison(widget.idProductList!);
-    if (showOccaionsTypes != null) {
-      // ignore: use_build_context_synchronously
-      context
-          .read<ShowOccaisonsProvider>()
-          .updateOccaisonShow(showOccaionsTypes);
-    }
+        await occaisonsRepo.showOccaison(widget.productListId!);
+        // ignore: use_build_context_synchronously
+    context.read<ShowOccaisonsProvider>().updateOccaisonShow(showOccaionsTypes!);
+    //------------Or--------------------------------------
+    // if (showOccaionsTypes != null) {
+    //   // ignore: use_build_context_synchronously
+    //   context
+    //       .read<ShowOccaisonsProvider>()
+    //       .updateOccaisonShow(showOccaionsTypes);
+    // }
+    // ignore: use_build_context_synchronously
+   
   }
 
   Future<void> _productList() async {
     ProductListRepo productListRepo = ProductListRepo();
     productListProvider.setIsloading(true);
     List<Product>? model =
-        await productListRepo.productList(widget.idProductList!);
+        await productListRepo.productList(widget.productListId!);
         // ignore: use_build_context_synchronously
         context.read<ProductOccaisonsProvider>().updateProductList(model??[]);
         productListProvider.setIsloading(false);

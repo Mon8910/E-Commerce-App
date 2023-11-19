@@ -9,8 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key, this.idProductDetails});
-  final int? idProductDetails;
+  const ProductDetailsScreen({super.key, this.productDetailsId});
+  final int? productDetailsId;
   @override
   State<ProductDetailsScreen> createState() {
     return _ProductDetailsScreenState();
@@ -275,7 +275,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     ProductDetailsRepo productDetailsRepo = ProductDetailsRepo();
     productDetailsProvider.setIsloading(true);
     Product? productDetails =
-        await productDetailsRepo.getProductDetails(widget.idProductDetails!);
+        await productDetailsRepo.getProductDetailsRepo(widget.productDetailsId!);
     if (productDetails != null) {
       // ignore: use_build_context_synchronously
       context

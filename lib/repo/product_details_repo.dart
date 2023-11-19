@@ -5,7 +5,7 @@ import 'package:demo_project/services/producr_details_services.dart';
 
 class ProductDetailsRepo{
   final productDetailsServices=ProductDetailsServices();
-  Future<Product?> getProductDetails(int productDetailsId)async{
+  Future<Product?> getProductDetailsRepo(int productDetailsId)async{
     final response=await productDetailsServices.productDetailsServices(productDetailsId);
     if(response.statusCode==200){
       final Map<String,dynamic>extractedData=json.decode(response.body);

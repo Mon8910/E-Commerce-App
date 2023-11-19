@@ -46,7 +46,7 @@ class _LogoutState extends State<Logout> {
     if (success) {
       // ignore: use_build_context_synchronously
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: ((context) => const Login())));
+          .push(MaterialPageRoute(builder: ((context) => const LoginScreen())));
     }
   }
 }

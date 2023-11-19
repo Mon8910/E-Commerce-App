@@ -34,7 +34,6 @@ class ButtonFixedNavigator extends StatelessWidget {
           inactiveColorPrimary: Colors.black)
     ],
               decoration:const  NavBarDecoration(
-               // border: Border.all(width: 4,color:const Color.fromARGB(0, 151, 151, 151).withOpacity(.25))
               ),
               navBarStyle: NavBarStyle.style6,
             ),

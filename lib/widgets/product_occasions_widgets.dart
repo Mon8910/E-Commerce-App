@@ -62,7 +62,7 @@ class ProductOccasionWidget extends StatelessWidget {
               Expanded(
                 child: Selector<ProductOccaisonsProvider, List<Product>>(
                   selector: (ctx, productList) => productList.productList,
-                  builder: (context, productOccaisonsList, child) {
+                  builder: (context, productList, child) {
                     return GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
@@ -70,7 +70,7 @@ class ProductOccasionWidget extends StatelessWidget {
                                 childAspectRatio: .70,
                                 crossAxisSpacing: 3,
                                 mainAxisSpacing: 1),
-                        itemCount: productOccaisonsList.length,
+                        itemCount: productList.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -78,8 +78,8 @@ class ProductOccasionWidget extends StatelessWidget {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ProductDetailsScreen(
-                                        idProductDetails:
-                                            productOccaisonsList[index].id
+                                        productDetailsId:
+                                            productList[index].id
                                                 as int)));
                               },
                               child: Column(
@@ -87,7 +87,7 @@ class ProductOccasionWidget extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Image.network(
-                                    productOccaisonsList[index]
+                                    productList[index]
                                         .image
                                         .toString(),
                                     width: 168,
@@ -98,7 +98,7 @@ class ProductOccasionWidget extends StatelessWidget {
                                     height: 10,
                                   ),
                                   Text(
-                                    productOccaisonsList[index].name.toString(),
+                                    productList[index].name.toString(),
                                     style: GoogleFonts.jost(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
@@ -110,7 +110,7 @@ class ProductOccasionWidget extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        ' ${productOccaisonsList[index].currency!.name} ${productOccaisonsList[index].price}',
+                                        ' ${productList[index].currency!.name} ${productList[index].price}',
                                         style: GoogleFonts.jost(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
@@ -122,7 +122,7 @@ class ProductOccasionWidget extends StatelessWidget {
                                         width: 4,
                                       ),
                                       Text(
-                                          '${productOccaisonsList[index].currency!.name} ${productOccaisonsList[index].priceAfterDiscount}',
+                                          '${productList[index].currency!.name} ${productList[index].priceAfterDiscount}',
                                           style: GoogleFonts.jost(
                                               decoration:
                                                   TextDecoration.lineThrough,

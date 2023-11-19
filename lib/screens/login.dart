@@ -10,15 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
   @override
-  State<Login> createState() {
-    return _LoginState();
+  State<LoginScreen> createState() {
+    return _LoginScreenState();
   }
 }
 
-class _LoginState extends State<Login> {
+class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   String? codes;
   final phone = TextEditingController();

@@ -8,14 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 
-class AuthCode extends StatefulWidget {
-  const AuthCode({super.key});
+class AuthCodeScreen extends StatefulWidget {
+  const AuthCodeScreen({super.key});
 
   @override
-  State<AuthCode> createState() => _AuthCodeState();
+  State<AuthCodeScreen> createState() => _AuthCodeScreenState();
 }
 
-class _AuthCodeState extends State<AuthCode> {
+class _AuthCodeScreenState extends State<AuthCodeScreen> {
   final codess = TextEditingController();
   final formKey = GlobalKey<FormState>();
   late final authProvider = context.read<VerifyOtpProvider>();
@@ -64,12 +64,10 @@ class _AuthCodeState extends State<AuthCode> {
                             textStyle: GoogleFonts.jost(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
-                                color: const Color.fromARGB(1, 26, 26, 26)
-                                    ),
+                                color: const Color.fromARGB(1, 26, 26, 26)),
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: const Color.fromRGBO(1, 26, 26, 26)
-                                      ),
+                                  color: const Color.fromRGBO(1, 26, 26, 26)),
                               shape: BoxShape.rectangle,
                             )),
                       )
@@ -78,41 +76,44 @@ class _AuthCodeState extends State<AuthCode> {
               const SizedBox(
                 height: 15,
               ),
-                Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Selector<CountdownProvider, int>(
-                selector: (_, countdownProvider) =>
-                    countdownProvider.remainingSeconds,
-                builder: (context, remainingSeconds, _) {
-                  return Column(
-                    children: [
-                      remainingSeconds == 0
-                          ?Selector<VerifyOtpProvider, bool>(
-                            selector: (_, myType) => myType.isloading,
-                            builder: (context, isloading, child) {
-                              return  InkWell(
-                              onTap:()=> isloading? {}: verifyOtp(),
-                              child: Text(
-                                'Resend code',
-                                style: TextStyle(color: Colors.grey[400]),
-                              ),
-                            ) ;
-                            },
-                          )
-                          :const SizedBox(),
-                    const  SizedBox(height: 20),
-                      remainingSeconds != 0 ? Text('$remainingSeconds s') : SizedBox(),
-                    ],
-                  );
-                },
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Selector<CountdownProvider, int>(
+                      selector: (_, countdownProvider) =>
+                          countdownProvider.remainingSeconds,
+                      builder: (context, remainingSeconds, _) {
+                        return Column(
+                          children: [
+                            remainingSeconds == 0
+                                ? Selector<VerifyOtpProvider, bool>(
+                                    selector: (_, myType) => myType.isloading,
+                                    builder: (context, isloading, child) {
+                                      return InkWell(
+                                        onTap: () =>
+                                            isloading ? {} : verifyOtp(),
+                                        child: Text(
+                                          'Resend code',
+                                          style: TextStyle(
+                                              color: Colors.grey[400]),
+                                        ),
+                                      );
+                                    },
+                                  )
+                                : const SizedBox(),
+                            const SizedBox(height: 20),
+                            remainingSeconds != 0
+                                ? Text('$remainingSeconds s')
+                                :const SizedBox(),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        )
-              
-              ,SizedBox(
+              SizedBox(
                 height: MediaQuery.of(context).size.height * .17,
               ),
               Selector<VerifyOtpProvider, bool>(
@@ -123,7 +124,7 @@ class _AuthCodeState extends State<AuthCode> {
                     style: ElevatedButton.styleFrom(
                         minimumSize:
                             Size(MediaQuery.of(context).size.width * .9, 64),
-                        backgroundColor: const   Color.fromARGB(1,63,171,174),
+                        backgroundColor: const Color.fromARGB(1, 63, 171, 174),
                         shape: const LinearBorder()),
                     child: isloading
                         ? const CircularProgressIndicator(

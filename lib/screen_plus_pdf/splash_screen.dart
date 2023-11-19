@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 // ignore: must_be_immutable
 class Splash1Screen extends StatelessWidget {
-   Splash1Screen(this.nextpage,{super.key});
-  PageController nextpage=PageController();
+  Splash1Screen(this.nextpage, {super.key});
+  PageController nextpage = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,7 @@ class Splash1Screen extends StatelessWidget {
                   style: GoogleFonts.jost(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
-                    color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1),
+                    color: const Color.fromARGB(1, 26, 26, 26),
                   ),
                 ),
                 const Spacer(),
@@ -46,30 +46,37 @@ class Splash1Screen extends StatelessWidget {
                       horizontal: 18.0, vertical: 20),
                   child: Row(
                     children: [
-                      TextButton(onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Login()));
-                      }, child: Text('Skip',style: GoogleFonts.jost(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color:const Color.fromARGB(1, 26, 26, 26).withOpacity(1)
-                      ),),),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const LoginScreen()));
+                        },
+                        child: Text(
+                          'Skip',
+                          style: GoogleFonts.jost(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: const Color.fromARGB(1, 26, 26, 26)),
+                        ),
+                      ),
                       const Spacer(),
                       ElevatedButton(
                           onPressed: () {
-                            nextpage.animateToPage(1, duration:const Duration(milliseconds: 600), curve: Curves.easeIn);
+                            nextpage.animateToPage(1,
+                                duration: const Duration(milliseconds: 600),
+                                curve: Curves.easeIn);
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromARGB(1, 63, 171, 174)
-                                      .withOpacity(1),shape:const RoundedRectangleBorder()
-                                      ),
+                                      .withOpacity(1),
+                              shape: const RoundedRectangleBorder()),
                           child: Text(
                             'next',
                             style: GoogleFonts.jost(
                               fontWeight: FontWeight.w700,
                               fontSize: 16,
-                              color: const Color.fromARGB(1, 255, 255, 255)
-                                  .withOpacity(1),
+                              color: const Color.fromARGB(1, 255, 255, 255),
                             ),
                           ))
                     ],
@@ -97,7 +104,7 @@ class Splash1Screen extends StatelessWidget {
                   style: GoogleFonts.jost(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
-                    color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1),
+                    color: const Color.fromARGB(1, 26, 26, 26),
                   ),
                 ),
                 const Spacer(),
@@ -106,28 +113,35 @@ class Splash1Screen extends StatelessWidget {
                       horizontal: 18.0, vertical: 20),
                   child: Row(
                     children: [
-                      TextButton(onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Login()));
-                      }, child: Text('Skip',style: GoogleFonts.jost(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color:const Color.fromARGB(1, 26, 26, 26).withOpacity(1)
-                      ),),),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const LoginScreen()));
+                        },
+                        child: Text(
+                          'Skip',
+                          style: GoogleFonts.jost(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: const Color.fromARGB(1, 26, 26, 26)
+                                  ),
+                        ),
+                      ),
                       const Spacer(),
                       ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromARGB(1, 63, 171, 174)
-                                      .withOpacity(1),shape:const RoundedRectangleBorder()
-                                      ),
+                                      ,
+                              shape: const RoundedRectangleBorder()),
                           child: Text(
                             'next',
                             style: GoogleFonts.jost(
                               fontWeight: FontWeight.w700,
                               fontSize: 16,
                               color: const Color.fromARGB(1, 255, 255, 255)
-                                  .withOpacity(1),
+                                  ,
                             ),
                           ))
                     ],
@@ -155,31 +169,30 @@ class Splash1Screen extends StatelessWidget {
                   style: GoogleFonts.jost(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
-                    color: const Color.fromARGB(1, 26, 26, 26).withOpacity(1),
+                    color: const Color.fromARGB(1, 26, 26, 26),
                   ),
                 ),
                 const Spacer(),
-                 Padding(
-                   padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 20),
-                   child: ElevatedButton(
-                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Login()));
-                   
-                                 },
-                                 style: ElevatedButton.styleFrom(
-                      minimumSize:
-                          Size(MediaQuery.of(context).size.width * .9, 64),
-                      backgroundColor: 
-                          
-                          const Color(0x3FABAE).withOpacity(1),
-                      shape: const LinearBorder()),
-                                 child: Text('Get Started',
-                      style: GoogleFonts.jost(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white)),
-                               ),
-                 )
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const LoginScreen()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width * .9, 64),
+                        backgroundColor: const Color.fromARGB(0, 63, 171, 174),
+                        shape: const LinearBorder()),
+                    child: Text('Get Started',
+                        style: GoogleFonts.jost(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white)),
+                  ),
+                )
               ],
             )
           ],
