@@ -19,7 +19,7 @@ class ProductListScreen extends StatefulWidget {
 }
 
 class _ProductListScreenState extends State<ProductListScreen> {
-  late final productProvider=context.read<ProductOccaisonsProvider>();
+  late final productListProvider=context.read<ProductOccaisonsProvider>();
   @override
   void initState() {
     super.initState();
@@ -76,12 +76,12 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   Future<void> _productList() async {
     ProductListRepo productListRepo = ProductListRepo();
-    productProvider.setIsloading(true);
+    productListProvider.setIsloading(true);
     List<Product>? model =
         await productListRepo.productList(widget.idProductList!);
         // ignore: use_build_context_synchronously
         context.read<ProductOccaisonsProvider>().updateProductList(model??[]);
-        productProvider.setIsloading(false);
+        productListProvider.setIsloading(false);
 
     // if (model != null) {
     //   // ignore: use_build_context_synchronously
