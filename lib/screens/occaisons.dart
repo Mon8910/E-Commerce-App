@@ -197,7 +197,7 @@ class _OccasionsScreenState extends State<OccasionsScreen> {
                             );
                           });
                     },
-                    selector: (context, p1) => p1.occaionsList),
+                    selector: (context, occaionsList) => occaionsList.occaionsList),
               );
       },
     );
