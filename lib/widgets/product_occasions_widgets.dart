@@ -44,7 +44,7 @@ class ProductListWidget extends StatelessWidget {
                       },
                     ),
                     subtitle: Selector<ShowOccaisonsProvider, OccaionsModel>(
-                      selector: (ctx, getOccaison) => getOccaison.getOccaison,
+                      selector: (context, getOccaison) => getOccaison.getOccaison,
                       builder: (context, showOccaisonsType, child) {
                         return Text(
                           'Discover top offers for ${showOccaisonsType.name}’s gift and save money ',
@@ -61,7 +61,7 @@ class ProductListWidget extends StatelessWidget {
               ),
               Expanded(
                 child: Selector<ProductOccaisonsProvider, List<Product>>(
-                  selector: (ctx, productList) => productList.productList,
+                  selector: (context, productList) => productList.productList,
                   builder: (context, productList, child) {
                     return GridView.builder(
                         gridDelegate:

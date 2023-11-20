@@ -32,13 +32,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
   @override
   Widget build(BuildContext context) {
     return Selector<ProductOccaisonsProvider, bool>(
-      selector: (ctx, mytype) => mytype.isloading,
+      selector: (context, productOccaisonsProvider) => productOccaisonsProvider.isloading,
       builder: (context,isloading , child) {
         return isloading?const Scaffold(body: Center(child: CircularProgressIndicator(),),): Scaffold(
         appBar: AppBar(
           centerTitle: true,
           title: Selector<ShowOccaisonsProvider, OccaionsModel>(
-            selector: (ctx, getOccaison) => getOccaison.getOccaison,
+            selector: (context, getOccaison) => getOccaison.getOccaison,
             builder: (context, showOccaisonsType, child) {
               return Text(showOccaisonsType.name.toString());
             },

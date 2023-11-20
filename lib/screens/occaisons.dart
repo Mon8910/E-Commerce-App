@@ -26,7 +26,7 @@ class _OccasionsScreenState extends State<OccasionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Selector<OccaisonsProvider, bool>(
-      selector: (ctx, mytype) => mytype.isloading,
+      selector: (context, occaisonsProvider) => occaisonsProvider.isloading,
       builder: (context, isloading, child) {
         return isloading
             ? const Center(

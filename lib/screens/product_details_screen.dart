@@ -28,7 +28,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Selector<ProductDetailsProvider, bool>(
-      selector: (ctx, mytype) => mytype.isloading,
+      selector: (context, productDetailsProvider) => productDetailsProvider.isloading,
       builder: (context, isloading, child) {
         return isloading
             ? const Scaffold(body: Center(child: CircularProgressIndicator(),),)
@@ -39,7 +39,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     child: Column(
                       children: [
                         Selector<ProductDetailsProvider, Product>(
-                          selector: ((ctx, productDetails) => productDetails.productDetails),
+                          selector: ((context, productDetails) => productDetails.productDetails),
                           builder: (context, productDetails, child) {
                             return SingleChildScrollView(
                               child: Column(
