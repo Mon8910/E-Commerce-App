@@ -20,13 +20,13 @@ class _OccasionsScreenState extends State<OccasionsScreen> {
   @override
   void initState() {
     super.initState();
-    _occaionsList();
+    _getOccaionsList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Selector<OccaisonsProvider, bool>(
-      selector: (ctx, isloading) => isloading.isloading,
+      selector: (ctx, mytype) => mytype.isloading,
       builder: (context, isloading, child) {
         return isloading
             ? const Center(
@@ -203,7 +203,7 @@ class _OccasionsScreenState extends State<OccasionsScreen> {
     );
   }
 
-  Future<void> _occaionsList() async {
+  Future<void> _getOccaionsList() async {
     OccasionsRepo occasionRepo = OccasionsRepo();
     occaisonsProvider.setIsloading(true);
     List<OccaionsModel>? model = await occasionRepo.occaionsRepo();

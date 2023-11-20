@@ -23,16 +23,16 @@ class _ProductListScreenState extends State<ProductListScreen> {
   @override
   void initState() {
     super.initState();
-    _productList();
+    _getProductList();
 
-    _showOccaisonType();
+    _getShowOccaisonType();
   }
 
   //final occasionLists = Apiprovderdetails();
   @override
   Widget build(BuildContext context) {
     return Selector<ProductOccaisonsProvider, bool>(
-      selector: (ctx, isloading) => isloading.isloading,
+      selector: (ctx, mytype) => mytype.isloading,
       builder: (context,isloading , child) {
         return isloading?const Scaffold(body: Center(child: CircularProgressIndicator(),),): Scaffold(
         appBar: AppBar(
@@ -62,7 +62,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 
-  Future<void> _showOccaisonType() async {
+  Future<void> _getShowOccaisonType() async {
     ShowOccaisonsRepo occaisonsRepo = ShowOccaisonsRepo();
     OccaionsModel? showOccaionsTypes =
         await occaisonsRepo.showOccaison(widget.productListId!);
@@ -79,7 +79,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
    
   }
 
-  Future<void> _productList() async {
+  Future<void> _getProductList() async {
     ProductListRepo productListRepo = ProductListRepo();
     productListProvider.setIsloading(true);
     List<Product>? model =

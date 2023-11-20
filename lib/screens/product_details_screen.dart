@@ -22,13 +22,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    _productDetails();
+    _getProductDetails();
   }
 
   @override
   Widget build(BuildContext context) {
     return Selector<ProductDetailsProvider, bool>(
-      selector: (ctx, isloading) => isloading.isloading,
+      selector: (ctx, mytype) => mytype.isloading,
       builder: (context, isloading, child) {
         return isloading
             ? const Scaffold(body: Center(child: CircularProgressIndicator(),),)
@@ -271,7 +271,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Future<void> _productDetails() async {
+  Future<void> _getProductDetails() async {
     ProductDetailsRepo productDetailsRepo = ProductDetailsRepo();
     productDetailsProvider.setIsloading(true);
     Product? productDetails =
