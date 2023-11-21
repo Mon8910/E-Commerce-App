@@ -39,8 +39,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
           centerTitle: true,
           title: Selector<ShowOccasionsProvider, OccasionsModels>(
             selector: (context, provider) => provider.getOccaSion,
-            builder: (context, showOccaisonsType, child) {
-              return Text(showOccaisonsType.name.toString());
+            builder: (context, showOccasionsProvider, child) {
+              return Text(showOccasionsProvider.name.toString());
             },
           ),
           actions: const [Icon(Icons.search)],

@@ -28,19 +28,19 @@ class ProductsWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Selector<ShowOccasionsProvider, OccasionsModels>(
                 selector: (context, provider) => provider.getOccaSion,
-                builder: (context, showOccaisonsTypeProvider, child) {
+                builder: (context, showOccasionsProvider, child) {
                   return ListTile(
                     leading: Image.asset(
                       'assets/images/discount-shape.png',
                     ),
                     title: Text(
-                      'Top offers for ${showOccaisonsTypeProvider.name}',
+                      'Top offers for ${showOccasionsProvider.name}',
                       style: GoogleFonts.jost(
                           fontSize: 14, fontWeight: FontWeight.w700),
                     ),
                     subtitle:
                          Text(
-                          'Discover top offers for ${showOccaisonsTypeProvider.name}’s gift and save money ',
+                          'Discover top offers for ${showOccasionsProvider.name}’s gift and save money ',
                           style: GoogleFonts.jost(
                               fontWeight: FontWeight.w400, fontSize: 10),
                         ),
@@ -56,14 +56,14 @@ class ProductsWidget extends StatelessWidget {
         Expanded(
           child: Selector<ProductsProvider, List<ProductModels>>(
             selector: (context, provider) => provider.productList,
-            builder: (context, productList, child) {
+            builder: (context, productsProvider, child) {
               return GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: .70,
                       crossAxisSpacing: 3,
                       mainAxisSpacing: 1),
-                  itemCount: productList.length,
+                  itemCount: productsProvider.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -72,14 +72,14 @@ class ProductsWidget extends StatelessWidget {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => ProductsDetailsScreen(
                                   productDetailsId:
-                                      productList[index].id as int)));
+                                      productsProvider[index].id as int)));
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.network(
-                              productList[index].image.toString(),
+                              productsProvider[index].image.toString(),
                               width: 168,
                               height: 168,
                               fit: BoxFit.cover,
@@ -88,7 +88,7 @@ class ProductsWidget extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              productList[index].name.toString(),
+                              productsProvider[index].name.toString(),
                               style: GoogleFonts.jost(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
@@ -98,7 +98,7 @@ class ProductsWidget extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  ' ${productList[index].currency!.name} ${productList[index].price}',
+                                  ' ${productsProvider[index].currency!.name} ${productsProvider[index].price}',
                                   style: GoogleFonts.jost(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
@@ -109,7 +109,7 @@ class ProductsWidget extends StatelessWidget {
                                   width: 4,
                                 ),
                                 Text(
-                                    '${productList[index].currency!.name} ${productList[index].priceAfterDiscount}',
+                                    '${productsProvider[index].currency!.name} ${productsProvider[index].priceAfterDiscount}',
                                     style: GoogleFonts.jost(
                                         decoration: TextDecoration.lineThrough,
                                         fontSize: 12,

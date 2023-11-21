@@ -30,8 +30,8 @@ class _ProductDetailsScreenState extends State<ProductsDetailsScreen> {
   Widget build(BuildContext context) {
     return Selector<ProductDetailsProvider, Tuple2<bool,ProductModels>>(
       selector: (context, provider) => Tuple2(provider.isloading, provider.productDetails),
-      builder: (context, provider, child) {
-        return provider.item1
+      builder: (context, productsDetailsProvider, child) {
+        return productsDetailsProvider.item1
             ? const Scaffold(body: Center(child: CircularProgressIndicator(),),)
             : Scaffold(
                 body: Padding(
@@ -51,7 +51,7 @@ class _ProductDetailsScreenState extends State<ProductsDetailsScreen> {
                                         width: double.infinity,
                                         //height: MediaQuery.of(context).size.height*.35,
                                         child: Image.network(
-                                          provider.item2.image.toString(),
+                                          productsDetailsProvider.item2.image.toString(),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -104,7 +104,7 @@ class _ProductDetailsScreenState extends State<ProductsDetailsScreen> {
                                     height: 12,
                                   ),
                                   Text(
-                                    provider.item2.name.toString(),
+                                    productsDetailsProvider.item2.name.toString(),
                                     style: GoogleFonts.jost(
                                         color:
                                             const Color.fromARGB(255, 26, 26, 26),
@@ -128,7 +128,7 @@ class _ProductDetailsScreenState extends State<ProductsDetailsScreen> {
                                         width: 4,
                                       ),
                                       Text(
-                                        provider.item2.avgRate.toString(),
+                                        productsDetailsProvider.item2.avgRate.toString(),
                                         style: GoogleFonts.jost(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w700,
@@ -140,7 +140,7 @@ class _ProductDetailsScreenState extends State<ProductsDetailsScreen> {
                                         width: 5,
                                       ),
                                       Text(
-                                        '(${provider.item2.avgRate})',
+                                        '(${productsDetailsProvider.item2.avgRate})',
                                         style: GoogleFonts.jost(
                                             color: const Color.fromARGB(
                                                 255, 66, 66, 66),
@@ -155,7 +155,7 @@ class _ProductDetailsScreenState extends State<ProductsDetailsScreen> {
                                   Row(
                                     children: [
                                       Text(
-                                        '${provider.item2.currency!.name} ${provider.item2.price}',
+                                        '${productsDetailsProvider.item2.currency!.name} ${productsDetailsProvider.item2.price}',
                                         style: GoogleFonts.jost(
                                             fontSize: 20,
                                             fontWeight: FontWeight.w500,
@@ -166,7 +166,7 @@ class _ProductDetailsScreenState extends State<ProductsDetailsScreen> {
                                         width: 8,
                                       ),
                                       Text(
-                                        '${provider.item2.currency!.name} ${provider.item2.priceAfterDiscount}',
+                                        '${productsDetailsProvider.item2.currency!.name} ${productsDetailsProvider.item2.priceAfterDiscount}',
                                         style: GoogleFonts.jost(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
@@ -249,7 +249,7 @@ class _ProductDetailsScreenState extends State<ProductsDetailsScreen> {
                                     height: 10,
                                   ),
                                   Text(
-                                    provider.item2.description.toString(),
+                                    productsDetailsProvider.item2.description.toString(),
                                     style: GoogleFonts.jost(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
