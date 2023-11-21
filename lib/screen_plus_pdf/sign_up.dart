@@ -1,4 +1,4 @@
-import 'package:demo_project/screens/login.dart';
+import 'package:demo_project/screens/login_screen.dart';
 import 'package:demo_project/widget_plus_pdf/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,7 +29,7 @@ class _SignupScreenState extends State<SignupScreen> {
             Text(
               'Welcome to cadeau',
               style: GoogleFonts.jost(
-                  color: const Color.fromARGB(1, 26, 26, 26),
+                  color: const Color.fromARGB(255, 26, 26, 26),
                   fontSize: 20,
                   fontWeight: FontWeight.w700),
             ),
@@ -41,7 +41,7 @@ class _SignupScreenState extends State<SignupScreen> {
               style: GoogleFonts.jost(
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
-                  color: const Color.fromARGB(1, 26, 26, 26)),
+                  color: const Color.fromARGB(255, 26, 26, 26)),
             ),
             const SizedBox(
               height: 15,
@@ -59,7 +59,7 @@ class _SignupScreenState extends State<SignupScreen> {
               width: double.infinity,
               height: MediaQuery.sizeOf(context).height * .062,
               decoration:
-                  const BoxDecoration(color: Color.fromARGB(1, 248, 248, 248)),
+                  const BoxDecoration(color: Color.fromARGB(255, 248, 248, 248)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
@@ -76,7 +76,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: GoogleFonts.jost(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: const Color.fromARGB(1, 26, 26, 26)),
+                          color: const Color.fromARGB(255, 26, 26, 26)),
                     )
                   ],
                 ),
@@ -94,7 +94,7 @@ class _SignupScreenState extends State<SignupScreen> {
               width: double.infinity,
               height: MediaQuery.sizeOf(context).height * .062,
               decoration:const BoxDecoration(
-                  color:  Color.fromARGB(1, 248, 248, 248)),
+                  color:  Color.fromARGB(255, 248, 248, 248)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
@@ -111,7 +111,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: GoogleFonts.jost(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: const Color.fromARGB(1, 26, 26, 26)
+                          color: const Color.fromARGB(255, 26, 26, 26)
                               ),
                     ),
                   ],
@@ -126,7 +126,7 @@ class _SignupScreenState extends State<SignupScreen> {
               const  Expanded(
                   child: Divider(
                     color:
-                         Color.fromARGB(1, 110, 122, 138),
+                         Color.fromARGB(255, 110, 122, 138),
                     thickness: 1.0,
                   ),
                 ),
@@ -136,13 +136,13 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: GoogleFonts.jost(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: const Color.fromARGB(1, 110, 122, 138)
+                          color: const Color.fromARGB(255, 110, 122, 138)
                               )),
                 ),
                 Expanded(
                   child: Divider(
                     color:
-                        const Color.fromARGB(1, 110, 122, 138).withOpacity(.18),
+                        const Color.fromARGB(255, 110, 122, 138).withOpacity(.18),
                     thickness: 1.0,
                   ),
                 ),
@@ -164,7 +164,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 style: GoogleFonts.jost(
                   fontWeight: FontWeight.w500,
                   fontSize: 10,
-                  color: const Color.fromARGB(0, 0, 0, 0),
+                  color: const Color.fromARGB(255, 0, 0, 0),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -179,7 +179,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   style: GoogleFonts.jost(
                       fontSize: 14,
                       color:
-                          const Color.fromARGB(1, 26, 26, 26),
+                          const Color.fromARGB(255, 26, 26, 26),
                       fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(
@@ -194,7 +194,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     'Login',
                     style: GoogleFonts.jost(
                         color:
-                            const Color.fromARGB(1, 242, 85, 0)),
+                            const Color.fromARGB(255, 242, 85, 0)),
                   ),
                 )
               ],

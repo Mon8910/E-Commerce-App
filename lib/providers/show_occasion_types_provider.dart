@@ -1,21 +1,12 @@
-import 'package:demo_project/models/occaisons_list_model.dart';
+import 'package:demo_project/models/occasions_models.dart';
 import 'package:demo_project/repo/show_occasion_types.dart';
 import 'package:flutter/material.dart';
 
-class ShowOccaisonsProvider extends ChangeNotifier{
-   bool isloadingproduct = false;
-   OccaionsModel getOccaison=OccaionsModel();
-   final showOccaionsRepo=ShowOccaisonsRepo();
-   void updateOccaisonShow(OccaionsModel value){
-    getOccaison=value;
+class ShowOccasionsProvider extends ChangeNotifier {
+  OccasionsModels getOccaSion = OccasionsModels();
+  final showOccaionsRepo = ShowOccaisonsRepo();
+  void updateOccasionShow(OccasionsModels value) {
+    getOccaSion = value;
     notifyListeners();
-   }
-
-  
-  
+  }
 }
-
-
-
-
-

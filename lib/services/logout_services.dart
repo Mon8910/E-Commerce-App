@@ -12,7 +12,7 @@ class LogoutServices {
     final http.Response response = await http.delete(
         Uri.parse('${Einveromevt.baseurl}${Appurl.logOut}'),
         headers: headers);
-        print('dddddd=========${response.body}');
+       // print('Logut body is ${response.body}');
         return response;
         // print(response);
   }

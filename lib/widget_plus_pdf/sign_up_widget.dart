@@ -14,7 +14,7 @@ class SignupWidget extends StatelessWidget{
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).height*.062,
                 decoration:const BoxDecoration(
-                  color: Color.fromARGB(1, 248, 248, 248)
+                  color: Color.fromARGB(255, 248, 248, 248)
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -25,7 +25,7 @@ class SignupWidget extends StatelessWidget{
                   Text(text,style: GoogleFonts.jost(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: const Color.fromARGB(1, 26, 26, 26)
+                    color: const Color.fromARGB(255, 26, 26, 26)
                   ),)
                     ],
                   ),
